@@ -1,0 +1,22 @@
+# Environment variables and sensitive credentials
+.env
+
+# Composer dependencies (if any)
+/vendor/
+
+# Temporary and log files
+*.log
+*.tmp
+debug_*.txt
+test_debug_*.txt
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE metadata
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
