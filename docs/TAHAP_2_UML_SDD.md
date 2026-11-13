@@ -272,3 +272,4 @@ Anda juga dapat membuka berkas galeri visual interaktif langsung di peramban:
 ---
 *Dokumen ini disusun secara mandiri untuk memenuhi luaran Tahap 2 Proyek Akhir Rekayasa Perangkat Lunak STMIK IKMI Cirebon.*  
 *Pengembang: **Siti Masripatul Hawa** &copy; 2026. Hak Cipta Dilindungi Undang-Undang.*
+

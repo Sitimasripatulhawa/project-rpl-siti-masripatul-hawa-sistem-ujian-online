@@ -60,7 +60,7 @@ require_once __DIR__ . '/../layouts/header.php';
             <div class="mb-3">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <label for="passwordInput" class="form-label text-sm fw-semibold text-dark mb-0">Kata Sandi</label>
-                    <a href="#" class="text-xs text-primary fw-medium" onclick="alert('Untuk akun demo, gunakan kata sandi: password123 (atau admin123)')">Lupa sandi?</a>
+                    <a href="<?= BASE_URL; ?>/auth/forgot_password" class="text-xs text-primary fw-medium"><i class="bi bi-whatsapp text-success me-1"></i>Lupa sandi?</a>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text bg-light text-secondary border-end-0"><i class="bi bi-lock"></i></span>

@@ -75,6 +75,10 @@ define('MAIL_ENCRYPTION', getenv('MAIL_ENCRYPTION') ?: 'tls');
 define('MAIL_FROM_ADDRESS', getenv('MAIL_FROM_ADDRESS') ?: (getenv('MAIL_USERNAME') ?: 'noreply@sekolah.sch.id'));
 define('MAIL_FROM_NAME', getenv('MAIL_FROM_NAME') ?: APP_NAME);
 
+// WhatsApp Gateway Configuration (Fonnte API - https://fonnte.com)
+define('FONNTE_TOKEN', getenv('FONNTE_TOKEN') ?: '');
+define('FONNTE_API_URL', getenv('FONNTE_API_URL') ?: 'https://api.fonnte.com/send');
+
 // Session config
 if (!headers_sent() && session_status() === PHP_SESSION_NONE) {
     session_start();

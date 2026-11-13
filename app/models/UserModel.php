@@ -262,4 +262,58 @@ class UserModel extends Model
         $sql = "DELETE FROM users WHERE id = :id";
         return $this->db->query($sql)->bind(':id', $id)->execute();
     }
+
+    /**
+     * Find user by phone, username, or email (flexible for OTP lookup)
+     *
+     * @param string $identifier
+     * @return array|null
+     */
+    public function findByPhoneOrIdentifier(string $identifier): ?array
+    {
+        $identifier = trim($identifier);
+        
+        // Clean numeric phone digits for matching
+        $digitsOnly = preg_replace('/[^0-9]/', '', $identifier);
+        $phoneAlt1 = $digitsOnly;
+        $phoneAlt2 = '';
+        if (str_starts_with($digitsOnly, '0')) {
+            $phoneAlt2 = '62' . substr($digitsOnly, 1);
+        } elseif (str_starts_with($digitsOnly, '62')) {
+            $phoneAlt2 = '0' . substr($digitsOnly, 2);
+        }
+
+        $sql = "SELECT id, username, email, password, role, full_name, phone, is_active 
+                FROM users 
+                WHERE username = :u1 
+                   OR email = :u2 
+                   OR phone = :p1 
+                   OR phone = :p2 
+                   OR phone = :p3 
+                LIMIT 1";
+
+        return $this->db->query($sql)
+            ->bind(':u1', $identifier)
+            ->bind(':u2', $identifier)
+            ->bind(':p1', $identifier)
+            ->bind(':p2', $phoneAlt1)
+            ->bind(':p3', $phoneAlt2)
+            ->single();
+    }
+
+    /**
+     * Direct password update with BCRYPT hash
+     *
+     * @param int $id
+     * @param string $passwordHash
+     * @return bool
+     */
+    public function updatePassword(int $id, string $passwordHash): bool
+    {
+        $sql = "UPDATE users SET password = :hash WHERE id = :id";
+        return $this->db->query($sql)
+            ->bind(':hash', $passwordHash)
+            ->bind(':id', $id)
+            ->execute();
+    }
 }

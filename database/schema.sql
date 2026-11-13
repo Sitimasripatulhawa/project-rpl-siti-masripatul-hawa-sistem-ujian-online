@@ -278,3 +278,22 @@ CREATE TABLE proctoring_events (
     INDEX idx_pe_time (event_time),
     CONSTRAINT fk_pe_participant FOREIGN KEY (exam_participant_id) REFERENCES exam_participants(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------------------------------------
+-- 14. TABLE: password_resets (OTP Password Recovery)
+-- ----------------------------------------------------------
+CREATE TABLE IF NOT EXISTS password_resets (
+    id BIGINT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT(20) UNSIGNED NOT NULL,
+    phone VARCHAR(25) NOT NULL,
+    otp_code VARCHAR(6) NOT NULL,
+    token VARCHAR(64) NOT NULL,
+    expires_at DATETIME NOT NULL,
+    is_used TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX (phone),
+    INDEX (otp_code),
+    INDEX (token)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
