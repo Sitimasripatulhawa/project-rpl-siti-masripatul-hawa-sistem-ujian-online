@@ -9,10 +9,10 @@ class FonnteService
     private string $token;
     private string $apiUrl;
 
-    public function __construct()
+    public function __construct(?string $token = null, ?string $apiUrl = null)
     {
-        $this->token = defined('FONNTE_TOKEN') ? trim(FONNTE_TOKEN) : '';
-        $this->apiUrl = defined('FONNTE_API_URL') ? trim(FONNTE_API_URL) : 'https://api.fonnte.com/send';
+        $this->token = $token !== null ? trim($token) : (defined('FONNTE_TOKEN') ? trim(FONNTE_TOKEN) : '');
+        $this->apiUrl = $apiUrl !== null ? trim($apiUrl) : (defined('FONNTE_API_URL') ? trim(FONNTE_API_URL) : 'https://api.fonnte.com/send');
     }
 
     /**
@@ -30,7 +30,7 @@ class FonnteService
      *
      * @param string $targetPhone Target phone number
      * @param string $message Text content
-     * @return array ['success' => bool, 'message' => string, 'simulated' => bool, 'response' => ?array]
+     * @return array ['success' => bool, 'message' => string, 'simulated' => bool, 'raw_reason' => string, 'response' => ?array]
      */
     public function sendMessage(string $targetPhone, string $message): array
     {
@@ -40,6 +40,7 @@ class FonnteService
                 'success' => true,
                 'simulated' => true,
                 'message' => 'Mode Simulasi Aktif: Token Fonnte belum diisi di .env. Pesan disimulasikan.',
+                'raw_reason' => 'simulation_mode',
                 'response' => ['target' => $targetPhone, 'message' => $message]
             ];
         }
@@ -80,7 +81,8 @@ class FonnteService
             return [
                 'success' => false,
                 'simulated' => false,
-                'message' => 'cURL Error saat menghubungi gateway Fonnte: ' . $err,
+                'message' => 'Gagal menghubungi gateway Fonnte (koneksi/jaringan bermasalah): ' . $err,
+                'raw_reason' => 'curl_error: ' . $err,
                 'response' => null
             ];
         }
@@ -91,17 +93,54 @@ class FonnteService
                 'success' => true,
                 'simulated' => false,
                 'message' => 'Pesan WhatsApp berhasil dikirim via Fonnte.',
+                'raw_reason' => 'ok',
                 'response' => $data
             ];
         }
 
-        $errorReason = $data['reason'] ?? ($data['message'] ?? 'Gateway Fonnte menolak pengiriman pesan (HTTP ' . $httpCode . ')');
+        $rawReason = $data['reason'] ?? ($data['message'] ?? 'Gateway Fonnte menolak pengiriman pesan (HTTP ' . $httpCode . ')');
+        $friendlyMessage = $this->formatErrorMessage($rawReason);
+
         return [
             'success' => false,
             'simulated' => false,
-            'message' => $errorReason,
+            'message' => $friendlyMessage,
+            'raw_reason' => $rawReason,
             'response' => $data
         ];
+    }
+
+    /**
+     * Map raw Fonnte error reasons into clear, helpful Indonesian messages
+     *
+     * @param string $reason
+     * @return string
+     */
+    private function formatErrorMessage(string $reason): string
+    {
+        $lower = strtolower(trim($reason));
+
+        if (str_contains($lower, 'unknown token')) {
+            return 'Token Fonnte tidak dikenali atau salah (unknown token). Silakan periksa Device Token di dashboard fonnte.com pada menu Device dan pastikan status perangkat Connected.';
+        }
+
+        if (str_contains($lower, 'device disconnected') || str_contains($lower, 'disconnected')) {
+            return 'Perangkat WhatsApp di Fonnte sedang terputus (device disconnected). Silakan buka dashboard fonnte.com dan scan ulang QR code perangkat Anda.';
+        }
+
+        if (str_contains($lower, 'invalid country') || str_contains($lower, 'invalid target')) {
+            return 'Format nomor tujuan WhatsApp tidak valid (' . htmlspecialchars($reason) . '). Pastikan nomor diawali dengan 08... atau 628...';
+        }
+
+        if (str_contains($lower, 'not registered') || str_contains($lower, 'unregistered')) {
+            return 'Nomor tujuan belum terdaftar di WhatsApp. Pastikan nomor tujuan memiliki akun WhatsApp aktif.';
+        }
+
+        if (str_contains($lower, 'quota') || str_contains($lower, 'insufficient') || str_contains($lower, 'package')) {
+            return 'Kuota pengiriman pesan Fonnte Anda telah habis atau paket kedaluwarsa. Silakan periksa kuota akun di fonnte.com.';
+        }
+
+        return 'Gateway Fonnte merespon: ' . $reason;
     }
 
     /**
@@ -127,15 +166,21 @@ class FonnteService
 
         $result = $this->sendMessage($targetPhone, $msg);
         
-        // Store OTP in session if in simulation mode so the UI can helpfully inform the developer
-        if ($result['simulated']) {
+        // If simulation mode OR sending failed, save OTP in session so user is never blocked
+        if ($result['simulated'] || !$result['success']) {
             $_SESSION['dev_simulated_otp'] = [
                 'phone' => $targetPhone,
                 'otp' => $otpCode,
+                'is_error' => !$result['success'],
+                'error_message' => !$result['success'] ? $result['message'] : null,
                 'time' => date('H:i:s')
             ];
+        } else {
+            // Real WhatsApp message delivered to gateway successfully
+            unset($_SESSION['dev_simulated_otp']);
         }
 
         return $result;
     }
 }
+

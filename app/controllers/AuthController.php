@@ -177,10 +177,15 @@ class AuthController extends Controller
         $_SESSION['reset_masked_phone'] = substr($user['phone'], 0, 4) . '****' . substr($user['phone'], -3);
         $_SESSION['reset_user_name'] = $user['full_name'];
 
-        if ($sendResult['simulated'] ?? false) {
-            Auth::setFlash('info', 'Kode OTP berhasil dibuat! (Mode Demo: Kode OTP Anda adalah <strong>' . $otpCode . '</strong>)');
+        if (!empty($sendResult['success'])) {
+            if ($sendResult['simulated'] ?? false) {
+                Auth::setFlash('info', 'Kode OTP berhasil dibuat! (Mode Demo: Kode OTP Anda adalah <strong>' . $otpCode . '</strong>)');
+            } else {
+                Auth::setFlash('success', 'Kode OTP telah berhasil dikirim ke nomor WhatsApp Anda (' . $_SESSION['reset_masked_phone'] . '). Silakan periksa pesan Anda.');
+            }
         } else {
-            Auth::setFlash('success', 'Kode OTP telah dikirim ke nomor WhatsApp Anda (' . $_SESSION['reset_masked_phone'] . '). Silakan periksa pesan Anda.');
+            $errText = $sendResult['message'] ?? 'Gagal mengirim pesan WhatsApp.';
+            Auth::setFlash('warning', '<strong>Pemberitahuan Gateway WhatsApp:</strong> ' . $errText . '<br><br>💡 <em>Untuk keperluan pengujian/reset saat ini, Anda dapat menggunakan kode OTP berikut:</em> <strong class="fs-6 font-monospace text-dark">' . $otpCode . '</strong>');
         }
 
         $this->redirect('auth/verify_otp');
@@ -265,10 +270,15 @@ class AuthController extends Controller
         $fonnte = new FonnteService();
         $sendResult = $fonnte->sendOtpPasswordReset($phone, $name, $otpCode);
 
-        if ($sendResult['simulated'] ?? false) {
-            Auth::setFlash('info', 'Kode OTP baru telah digenerate! (Mode Demo: Kode baru adalah <strong>' . $otpCode . '</strong>)');
+        if (!empty($sendResult['success'])) {
+            if ($sendResult['simulated'] ?? false) {
+                Auth::setFlash('info', 'Kode OTP baru telah digenerate! (Mode Demo: Kode baru adalah <strong>' . $otpCode . '</strong>)');
+            } else {
+                Auth::setFlash('success', 'Kode OTP baru telah berhasil dikirim ulang ke WhatsApp Anda.');
+            }
         } else {
-            Auth::setFlash('success', 'Kode OTP baru telah berhasil dikirim ulang ke WhatsApp Anda.');
+            $errText = $sendResult['message'] ?? 'Gagal mengirim ulang pesan WhatsApp.';
+            Auth::setFlash('warning', '<strong>Pemberitahuan Gateway WhatsApp:</strong> ' . $errText . '<br><br>💡 <em>Untuk keperluan pengujian/reset saat ini, Anda dapat menggunakan kode OTP berikut:</em> <strong class="fs-6 font-monospace text-dark">' . $otpCode . '</strong>');
         }
 
         $this->redirect('auth/verify_otp');

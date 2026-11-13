@@ -114,3 +114,4 @@ class PasswordResetModel extends Model
         return $this->db->query($sql)->bind(':id', $id)->execute();
     }
 }
+

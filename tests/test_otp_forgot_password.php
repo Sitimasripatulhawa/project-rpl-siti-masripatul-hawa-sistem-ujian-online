@@ -66,9 +66,16 @@ runTest("1.3 User Lookup by Normalized Phone (628...)", function() use ($userMod
 });
 
 // Test 2: Fonnte Service configuration & simulation
-runTest("2.1 Fonnte Service Instance & Message Simulation", function() use ($fonnteService) {
-    $res = $fonnteService->sendOtpPasswordReset('081234567890', 'Test Admin', '123456');
-    return ($res['success'] === true && isset($res['message']));
+runTest("2.1 Fonnte Service Simulation Mode", function() {
+    $simService = new FonnteService('');
+    $res = $simService->sendOtpPasswordReset('081234567890', 'Test Admin', '123456');
+    return ($res['success'] === true && $res['simulated'] === true && isset($res['message']));
+});
+
+runTest("2.2 Fonnte Service Error Handling & Fallback", function() {
+    $errService = new FonnteService('invalid_token');
+    $res = $errService->sendOtpPasswordReset('081234567890', 'Test Admin', '123456');
+    return ($res['success'] === false && !empty($res['message']));
 });
 
 // Test 3: PasswordResetModel Create & Verify OTP

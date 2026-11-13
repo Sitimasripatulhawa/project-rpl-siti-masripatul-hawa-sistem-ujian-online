@@ -25,16 +25,26 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
         <?php endif; ?>
 
-        <!-- Dev / Simulation Mode Helper Badge -->
+        <!-- Dev / Simulation Mode / Fallback Helper Badge -->
         <?php if (!empty($simulated_otp)): ?>
-            <div class="p-2 mb-3 bg-warning-subtle text-warning-emphasis border border-warning rounded-3 text-xs d-flex align-items-center justify-content-between">
+            <div class="p-3 mb-3 <?= !empty($simulated_otp['is_error']) ? 'bg-danger-subtle border-danger text-danger-emphasis' : 'bg-warning-subtle border-warning text-warning-emphasis'; ?> border rounded-3 text-xs">
+                <div class="d-flex align-items-center justify-content-between mb-1">
+                    <div>
+                        <i class="bi <?= !empty($simulated_otp['is_error']) ? 'bi-exclamation-triangle-fill text-danger' : 'bi-cpu text-warning'; ?> me-1"></i>
+                        <strong><?= !empty($simulated_otp['is_error']) ? 'Bantuan Darurat Gateway WhatsApp:' : 'Mode Demo / Uji Coba:'; ?></strong>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-dark py-0 px-2 text-xs" onclick="pasteSimulatedOtp('<?= htmlspecialchars($simulated_otp['otp'] ?? ''); ?>')">
+                        <i class="bi bi-clipboard-check me-1"></i> Tempel OTP
+                    </button>
+                </div>
+                <?php if (!empty($simulated_otp['error_message'])): ?>
+                    <div class="small text-danger mb-2 border-top border-danger-subtle pt-1 mt-1">
+                        <?= htmlspecialchars($simulated_otp['error_message']); ?>
+                    </div>
+                <?php endif; ?>
                 <div>
-                    <i class="bi bi-cpu me-1"></i> <strong>Mode Demo / Uji Coba:</strong><br>
                     Kode OTP Anda: <strong class="fs-6 font-monospace text-dark"><?= htmlspecialchars($simulated_otp['otp'] ?? ''); ?></strong>
                 </div>
-                <button type="button" class="btn btn-sm btn-dark py-0 px-2 text-xs" onclick="pasteSimulatedOtp('<?= htmlspecialchars($simulated_otp['otp'] ?? ''); ?>')">
-                    Tempel OTP
-                </button>
             </div>
         <?php endif; ?>
 
@@ -97,3 +107,4 @@ const interval = setInterval(function() {
 </script>
 
 <?php require_once __DIR__ . '/../layouts/footer.php'; ?>
+
