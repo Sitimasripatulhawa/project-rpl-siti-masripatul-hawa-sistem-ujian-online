@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" width="100%" height="100%" style="background:#0f172a; font-family:'Segoe UI',Roboto,Helvetica,sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <filter id="shadow2" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1200" fill="url(#bgGrad2)"/>
+
+  <!-- Header Banner -->
+  <rect x="40" y="25" width="1520" height="85" rx="14" fill="#1e293b" stroke="#334155" stroke-width="2" filter="url(#shadow2)"/>
+  <text x="70" y="60" fill="#38bdf8" font-size="24" font-weight="bold">ACTIVITY DIAGRAM — ALUR UJIAN SISWA TERINTEGRASI AI PROCTORING</text>
+  <text x="70" y="88" fill="#94a3b8" font-size="14">Pemodelan Alur Bisnis, Pengawasan Visual WebRTC, Scoring Risiko Kecurangan &amp; Koreksi Otomatis</text>
+
+  <!-- Swimlane Columns -->
+  <!-- Col 1: Siswa -->
+  <rect x="40" y="130" width="370" height="1020" fill="#1e293b" fill-opacity="0.5" stroke="#334155" stroke-width="1.5"/>
+  <rect x="40" y="130" width="370" height="45" fill="#3b82f6" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="225" y="158" fill="#60a5fa" font-size="16" font-weight="bold" text-anchor="middle">Siswa (Client / WebRTC)</text>
+
+  <!-- Col 2: Backend Controller -->
+  <rect x="410" y="130" width="400" height="1020" fill="#1e293b" fill-opacity="0.3" stroke="#334155" stroke-width="1.5"/>
+  <rect x="410" y="130" width="400" height="45" fill="#8b5cf6" fill-opacity="0.25" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="610" y="158" fill="#c084fc" font-size="16" font-weight="bold" text-anchor="middle">Sistem Ujian (Backend MVC)</text>
+
+  <!-- Col 3: AI Proctoring Engine -->
+  <rect x="810" y="130" width="400" height="1020" fill="#1e293b" fill-opacity="0.5" stroke="#334155" stroke-width="1.5"/>
+  <rect x="810" y="130" width="400" height="45" fill="#f59e0b" fill-opacity="0.25" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="1010" y="158" fill="#fcd34d" font-size="16" font-weight="bold" text-anchor="middle">AI Proctoring Engine (Service)</text>
+
+  <!-- Col 4: MySQL Database -->
+  <rect x="1210" y="130" width="350" height="1020" fill="#1e293b" fill-opacity="0.3" stroke="#334155" stroke-width="1.5"/>
+  <rect x="1210" y="130" width="350" height="45" fill="#10b981" fill-opacity="0.25" stroke="#10b981" stroke-width="1.5"/>
+  <text x="1385" y="158" fill="#34d399" font-size="16" font-weight="bold" text-anchor="middle">Database (MySQL Storage)</text>
+
+  <!-- ================= ACTIVITIES ================= -->
+
+  <!-- Initial State -->
+  <circle cx="225" cy="205" r="14" fill="#38bdf8" filter="url(#shadow2)"/>
+  <line x1="225" y1="219" x2="225" y2="245" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Act 1: Akses & Input Token -->
+  <rect x="100" y="245" width="250" height="50" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="225" y="267" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">1. Akses Halaman Ujian</text>
+  <text x="225" y="283" fill="#cbd5e1" font-size="11" text-anchor="middle">&amp; Masukkan Token Ujian</text>
+
+  <!-- Line to Backend Validate -->
+  <path d="M 350 270 L 490 270" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Act 2: Validasi Token & Session -->
+  <rect x="490" y="245" width="240" height="50" rx="12" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="610" y="267" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">2. Verifikasi Token &amp; Sesi</text>
+  <text x="610" y="283" fill="#cbd5e1" font-size="11" text-anchor="middle">Auth::check() &amp; ExamEngineModel</text>
+
+  <!-- Decision: Valid? -->
+  <polygon points="610,325 660,355 610,385 560,355" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+  <text x="610" y="359" fill="#fcd34d" font-size="11" font-weight="bold" text-anchor="middle">Valid?</text>
+  <line x1="610" y1="295" x2="610" y2="325" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Invalid branch -->
+  <path d="M 560 355 L 225 355 L 225 320" stroke="#ef4444" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="360" y="348" fill="#f87171" font-size="11">[Tidak Valid] Flash Error</text>
+
+  <!-- Valid branch to System Check -->
+  <path d="M 610 385 L 610 415 L 225 415 L 225 440" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="390" y="410" fill="#34d399" font-size="11">[Valid] Redirect System Check</text>
+
+  <!-- Act 3: System Readiness & WebRTC Check -->
+  <rect x="100" y="440" width="250" height="52" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="225" y="462" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">3. System Readiness Check</text>
+  <text x="225" y="478" fill="#cbd5e1" font-size="11" text-anchor="middle">Aktifkan Kamera &amp; Masuk Fullscreen</text>
+
+  <!-- Line to Start Exam Session -->
+  <line x1="225" y1="492" x2="225" y2="520" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Fork Bar (Paralel Execution) -->
+  <rect x="90" y="520" width="1050" height="8" rx="4" fill="#38bdf8"/>
+  <text x="590" y="540" fill="#38bdf8" font-size="11" font-style="italic">Fork: Pengerjaan Ujian dan Pengawasan AI Berjalan Secara Simultan</text>
+
+  <!-- Left Branch: Siswa Jawab Soal -->
+  <line x1="225" y1="528" x2="225" y2="560" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="100" y="560" width="250" height="55" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="225" y="583" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">4A. Pilih Jawaban Soal</text>
+  <text x="225" y="600" fill="#cbd5e1" font-size="11" text-anchor="middle">Navigasi Butir &amp; Trigger Change</text>
+
+  <!-- Line to Auto-Save -->
+  <path d="M 350 587 L 490 587" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="490" y="560" width="240" height="55" rx="12" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="610" y="583" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">5A. Simpan Jawaban AJAX</text>
+  <text x="610" y="600" fill="#cbd5e1" font-size="11" text-anchor="middle">Auto-Save per Butir Jawaban</text>
+
+  <!-- Line to DB Save -->
+  <path d="M 730 587 L 1270 587" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="1270" y="560" width="230" height="55" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="1385" y="583" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">6A. Update exam_answers</text>
+  <text x="1385" y="600" fill="#34d399" font-size="11" text-anchor="middle">INSERT / UPDATE Terisolasi</text>
+
+  <!-- Right Branch: AI Proctoring Loop -->
+  <line x1="1010" y1="528" x2="1010" y2="560" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowAmber)"/>
+  <rect x="880" y="560" width="260" height="55" rx="12" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="1010" y="583" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">4B. Monitoring AI Real-Time</text>
+  <text x="1010" y="600" fill="#fcd34d" font-size="11" text-anchor="middle">Webcam, Tab Switch &amp; Fullscreen</text>
+
+  <!-- Line to Risk Evaluation -->
+  <line x1="1010" y1="615" x2="1010" y2="650" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowAmber)"/>
+  <rect x="880" y="650" width="260" height="60" rx="12" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="1010" y="673" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">5B. Evaluasi Bobot Risiko</text>
+  <text x="1010" y="690" fill="#fcd34d" font-size="11" text-anchor="middle">ProctoringRiskService Scoring</text>
+
+  <!-- Decision: Pelanggaran Kritis? -->
+  <polygon points="1010,740 1060,770 1010,800 960,770" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+  <text x="1010" y="774" fill="#f87171" font-size="10" font-weight="bold" text-anchor="middle">Risk &gt; 75%?</text>
+  <line x1="1010" y1="710" x2="1010" y2="740" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowAmber)"/>
+
+  <!-- High Risk Branch -->
+  <path d="M 1060 770 L 1270 770" stroke="#ef4444" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="1270" y="745" width="230" height="52" rx="12" fill="#1e293b" stroke="#ef4444" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="1385" y="767" fill="#fca5a5" font-size="12" font-weight="bold" text-anchor="middle">Flag CHEATING</text>
+  <text x="1385" y="783" fill="#cbd5e1" font-size="10" text-anchor="middle">Simpan Log &amp; Alert Guru</text>
+
+  <!-- Low/Normal Risk: Warning Only to Siswa -->
+  <path d="M 960 770 L 350 770" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowAmber)"/>
+  <text x="650" y="762" fill="#fcd34d" font-size="11">[Minor Violation] Kirim Peringatan ke Layar Siswa</text>
+
+  <!-- Join Bar -->
+  <rect x="90" y="850" width="1050" height="8" rx="4" fill="#38bdf8"/>
+  <line x1="225" y1="615" x2="225" y2="850" stroke="#38bdf8" stroke-width="2"/>
+  <line x1="1010" y1="800" x2="1010" y2="850" stroke="#f59e0b" stroke-width="2"/>
+  <text x="590" y="842" fill="#38bdf8" font-size="11" font-style="italic">Join: Pengumpulan Jawaban atau Batas Waktu Ujian Berakhir</text>
+
+  <!-- Post-Exam Activities -->
+  <line x1="225" y1="858" x2="225" y2="890" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="100" y="890" width="250" height="50" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="225" y="912" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">7. Submit &amp; Selesaikan Ujian</text>
+  <text x="225" y="928" fill="#cbd5e1" font-size="11" text-anchor="middle">Konfirmasi Siswa / Auto-Submit</text>
+
+  <!-- Line to Backend Grading -->
+  <path d="M 350 915 L 490 915" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="490" y="890" width="240" height="50" rx="12" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="610" y="912" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">8. Auto-Grading Engine</text>
+  <text x="610" y="928" fill="#cbd5e1" font-size="11" text-anchor="middle">Hitung Benar, Salah &amp; Bobot</text>
+
+  <!-- Line to DB Result -->
+  <path d="M 730 915 L 1270 915" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="1270" y="890" width="230" height="50" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="1385" y="912" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">9. Simpan exam_results</text>
+  <text x="1385" y="928" fill="#34d399" font-size="11" text-anchor="middle">Nilai Akhir &amp; Risk Level</text>
+
+  <!-- Return to Siswa: Summary Result View -->
+  <path d="M 1385 940 L 1385 990 L 225 990 L 225 1015" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="100" y="1015" width="250" height="50" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="225" y="1037" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">10. Tampilkan Hasil Ujian</text>
+  <text x="225" y="1053" fill="#34d399" font-size="11" text-anchor="middle">Skor &amp; Ringkasan Evaluasi</text>
+
+  <!-- Final State -->
+  <line x1="225" y1="1065" x2="225" y2="1095" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <circle cx="225" cy="1115" r="16" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <circle cx="225" cy="1115" r="10" fill="#38bdf8"/>
+</svg>

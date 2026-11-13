@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeri 4 Diagram UML — AI Online Exam & Proctoring System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #0b1120; color: #f8fafc; font-family: 'Segoe UI', system-ui, sans-serif; }
+    .header-box { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-bottom: 1px solid #334155; }
+    .nav-pills .nav-link { color: #94a3b8; font-weight: 600; border-radius: 8px; margin-right: 8px; border: 1px solid transparent; }
+    .nav-pills .nav-link.active { background-color: #0284c7; color: #ffffff; border-color: #38bdf8; }
+    .diagram-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; overflow: hidden; }
+    .diagram-img-wrapper { background: #0f172a; text-align: center; padding: 20px; overflow-x: auto; }
+    .diagram-img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    .badge-uml { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="header-box py-4 mb-4">
+    <div class="container-fluid px-4">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div>
+          <span class="badge bg-primary-subtle text-primary border border-primary-subtle badge-uml mb-2">
+            <i class="bi bi-diagram-3-fill me-1"></i> UML Modeling Suite • Tahap 2 SDD
+          </span>
+          <h1 class="h3 fw-bold text-white mb-1">Galeri 4 Diagram UML — AI Online Exam & Proctoring System</h1>
+          <p class="text-secondary small mb-0">
+            Mata Kuliah: <strong>Rekayasa Perangkat Lunak (TIKB2503021)</strong> • Pengembang: <strong>Siti Masripatul Hawa</strong> • STMIK IKMI Cirebon
+          </p>
+        </div>
+        <div>
+          <a href="../TAHAP_2_UML_SDD.md" class="btn btn-outline-info btn-sm">
+            <i class="bi bi-file-text me-1"></i> Buka Dokumen SDD (Markdown)
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container-fluid px-4 pb-5">
+    <!-- Tabs Nav -->
+    <ul class="nav nav-pills mb-4" id="umlTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="usecase-tab" data-bs-toggle="pill" data-bs-target="#usecase-pane" type="button" role="tab">
+          <i class="bi bi-people-fill me-1"></i> 1. Use Case Diagram
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="activity-tab" data-bs-toggle="pill" data-bs-target="#activity-pane" type="button" role="tab">
+          <i class="bi bi-arrow-repeat me-1"></i> 2. Activity Diagram
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="class-tab" data-bs-toggle="pill" data-bs-target="#class-pane" type="button" role="tab">
+          <i class="bi bi-boxes me-1"></i> 3. Class Diagram (SOLID)
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="sequence-tab" data-bs-toggle="pill" data-bs-target="#sequence-pane" type="button" role="tab">
+          <i class="bi bi-bar-chart-steps me-1"></i> 4. Sequence Diagram
+        </button>
+      </li>
+    </ul>
+
+    <!-- Tabs Content -->
+    <div class="tab-content" id="umlTabsContent">
+      
+      <!-- 1. Use Case Pane -->
+      <div class="tab-pane fade show active" id="usecase-pane" role="tabpanel">
+        <div class="diagram-card p-3">
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <div>
+              <h2 class="h5 fw-bold text-info mb-1">Diagram 1: Use Case Diagram & Batasan Sistem</h2>
+              <p class="text-secondary small mb-0">Memodelkan 4 Aktor (Administrator, Guru, Siswa, AI Engine) dan 12 Use Case esensial.</p>
+            </div>
+            <div class="btn-group">
+              <a href="01_use_case_diagram.png" download class="btn btn-primary btn-sm"><i class="bi bi-download me-1"></i> Unduh PNG</a>
+              <a href="01_use_case_diagram.svg" download class="btn btn-outline-light btn-sm"><i class="bi bi-file-earmark-code me-1"></i> Unduh SVG</a>
+            </div>
+          </div>
+          <div class="diagram-img-wrapper">
+            <img src="01_use_case_diagram.png" alt="Use Case Diagram" class="diagram-img">
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Activity Pane -->
+      <div class="tab-pane fade" id="activity-pane" role="tabpanel">
+        <div class="diagram-card p-3">
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <div>
+              <h2 class="h5 fw-bold text-info mb-1">Diagram 2: Activity Diagram Alur Bisnis & AI Proctoring</h2>
+              <p class="text-secondary small mb-0">Memodelkan alur eksekusi paralel (Fork-Join), auto-save AJAX, pengawasan WebRTC & scoring risiko kecurangan.</p>
+            </div>
+            <div class="btn-group">
+              <a href="02_activity_diagram.png" download class="btn btn-primary btn-sm"><i class="bi bi-download me-1"></i> Unduh PNG</a>
+              <a href="02_activity_diagram.svg" download class="btn btn-outline-light btn-sm"><i class="bi bi-file-earmark-code me-1"></i> Unduh SVG</a>
+            </div>
+          </div>
+          <div class="diagram-img-wrapper">
+            <img src="02_activity_diagram.png" alt="Activity Diagram" class="diagram-img">
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Class Pane -->
+      <div class="tab-pane fade" id="class-pane" role="tabpanel">
+        <div class="diagram-card p-3">
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <div>
+              <h2 class="h5 fw-bold text-info mb-1">Diagram 3: Class Diagram MVC Native & Prinsip SOLID</h2>
+              <p class="text-secondary small mb-0">Struktur relasi Core (Database, Controller, Model), Controllers, Services (AI & SMTP) serta Data Models.</p>
+            </div>
+            <div class="btn-group">
+              <a href="03_class_diagram.png" download class="btn btn-primary btn-sm"><i class="bi bi-download me-1"></i> Unduh PNG</a>
+              <a href="03_class_diagram.svg" download class="btn btn-outline-light btn-sm"><i class="bi bi-file-earmark-code me-1"></i> Unduh SVG</a>
+            </div>
+          </div>
+          <div class="diagram-img-wrapper">
+            <img src="03_class_diagram.png" alt="Class Diagram" class="diagram-img">
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Sequence Pane -->
+      <div class="tab-pane fade" id="sequence-pane" role="tabpanel">
+        <div class="diagram-card p-3">
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <div>
+              <h2 class="h5 fw-bold text-info mb-1">Diagram 4: Sequence Diagram Pertukaran Pesan</h2>
+              <p class="text-secondary small mb-0">Rangkaian 30 pesan sinkron & asinkron antar komponen: Client UI, Controller, Risk Service & MySQL DB.</p>
+            </div>
+            <div class="btn-group">
+              <a href="04_sequence_diagram.png" download class="btn btn-primary btn-sm"><i class="bi bi-download me-1"></i> Unduh PNG</a>
+              <a href="04_sequence_diagram.svg" download class="btn btn-outline-light btn-sm"><i class="bi bi-file-earmark-code me-1"></i> Unduh SVG</a>
+            </div>
+          </div>
+          <div class="diagram-img-wrapper">
+            <img src="04_sequence_diagram.png" alt="Sequence Diagram" class="diagram-img">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -125,3 +125,4 @@ Laporan resmi rancang bangun perangkat lunak tersedia pada folder `docs/`:
 
 Dibuat untuk memenuhi luaran **Proyek Akhir Rekayasa Perangkat Lunak**  
 **Siti Masripatul Hawa** &copy; 2026. Hak Cipta Dilindungi Undang-Undang.
+

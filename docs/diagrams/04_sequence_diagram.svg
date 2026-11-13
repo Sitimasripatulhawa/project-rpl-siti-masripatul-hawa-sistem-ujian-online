@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1250" width="100%" height="100%" style="background:#0f172a; font-family:'Segoe UI',Roboto,Helvetica,sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <filter id="shadow4" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="seqArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="seqArrowReturn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="seqArrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444"/>
+    </marker>
+    <marker id="seqArrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="seqArrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1250" fill="url(#bgGrad4)"/>
+
+  <!-- Header Banner -->
+  <rect x="40" y="25" width="1520" height="85" rx="14" fill="#1e293b" stroke="#334155" stroke-width="2" filter="url(#shadow4)"/>
+  <text x="70" y="60" fill="#38bdf8" font-size="24" font-weight="bold">SEQUENCE DIAGRAM — ALUR PERTUKARAN PESAN UJIAN &amp; AI PROCTORING</text>
+  <text x="70" y="88" fill="#94a3b8" font-size="14">Interaksi Sinkron &amp; Asinkron antara Siswa, Frontend WebRTC, StudentController, AI Risk Service &amp; Database MySQL</text>
+
+  <!-- ================= LIFELINE OBJECTS ================= -->
+
+  <!-- Lifeline 1: Siswa (Actor) -->
+  <g transform="translate(70, 130)">
+    <rect width="140" height="45" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2" filter="url(#shadow4)"/>
+    <text x="70" y="28" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">:Siswa (User)</text>
+    <line x1="70" y1="45" x2="70" y2="1100" stroke="#475569" stroke-width="1.5" stroke-dasharray="6 4"/>
+  </g>
+
+  <!-- Lifeline 2: ExamRoomUI (Frontend) -->
+  <g transform="translate(320, 130)">
+    <rect width="180" height="45" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="2" filter="url(#shadow4)"/>
+    <text x="90" y="28" fill="#c084fc" font-size="13" font-weight="bold" text-anchor="middle">:ExamRoomUI (JS)</text>
+    <line x1="90" y1="45" x2="90" y2="1100" stroke="#475569" stroke-width="1.5" stroke-dasharray="6 4"/>
+  </g>
+
+  <!-- Lifeline 3: StudentController (Backend) -->
+  <g transform="translate(600, 130)">
+    <rect width="190" height="45" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow4)"/>
+    <text x="95" y="28" fill="#a78bfa" font-size="13" font-weight="bold" text-anchor="middle">:StudentController</text>
+    <line x1="95" y1="45" x2="95" y2="1100" stroke="#475569" stroke-width="1.5" stroke-dasharray="6 4"/>
+  </g>
+
+  <!-- Lifeline 4: ExamEngineModel (Model) -->
+  <g transform="translate(890, 130)">
+    <rect width="180" height="45" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="2" filter="url(#shadow4)"/>
+    <text x="90" y="28" fill="#34d399" font-size="13" font-weight="bold" text-anchor="middle">:ExamEngineModel</text>
+    <line x1="90" y1="45" x2="90" y2="1100" stroke="#475569" stroke-width="1.5" stroke-dasharray="6 4"/>
+  </g>
+
+  <!-- Lifeline 5: ProctoringRiskService (AI) -->
+  <g transform="translate(1170, 130)">
+    <rect width="190" height="45" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2" filter="url(#shadow4)"/>
+    <text x="95" y="28" fill="#fcd34d" font-size="13" font-weight="bold" text-anchor="middle">:ProctoringRiskService</text>
+    <line x1="95" y1="45" x2="95" y2="1100" stroke="#475569" stroke-width="1.5" stroke-dasharray="6 4"/>
+  </g>
+
+  <!-- Lifeline 6: Database (MySQL) -->
+  <g transform="translate(1430, 130)">
+    <rect width="140" height="45" rx="8" fill="#1e293b" stroke="#06b6d4" stroke-width="2" filter="url(#shadow4)"/>
+    <text x="70" y="28" fill="#22d3ee" font-size="13" font-weight="bold" text-anchor="middle">:Database (MySQL)</text>
+    <line x1="70" y1="45" x2="70" y2="1100" stroke="#475569" stroke-width="1.5" stroke-dasharray="6 4"/>
+  </g>
+
+  <!-- ================= ACTIVATION BARS & MESSAGES ================= -->
+
+  <!-- SECTION 1: MASUK RUANG UJIAN & SYSTEM CHECK -->
+  <rect x="40" y="200" width="1520" height="30" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="220" fill="#38bdf8" font-size="12" font-weight="bold">FASE 1: VERIFIKASI TOKEN &amp; INISIALISASI RUANG UJIAN</text>
+
+  <!-- Message 1: Siswa -> ExamRoomUI: Masukkan Token -->
+  <line x1="140" y1="250" x2="410" y2="250" stroke="#38bdf8" stroke-width="2" marker-end="url(#seqArrow)"/>
+  <text x="170" y="244" fill="#f8fafc" font-size="12">1: POST /student/room (token, examId)</text>
+
+  <!-- Message 2: ExamRoomUI -> StudentController -->
+  <line x1="410" y1="270" x2="695" y2="270" stroke="#38bdf8" stroke-width="2" marker-end="url(#seqArrow)"/>
+  <text x="440" y="264" fill="#f8fafc" font-size="12">2: validateAndEnterRoom(examId, token)</text>
+
+  <!-- Message 3: StudentController -> ExamEngineModel -->
+  <line x1="695" y1="290" x2="980" y2="290" stroke="#38bdf8" stroke-width="2" marker-end="url(#seqArrow)"/>
+  <text x="720" y="284" fill="#f8fafc" font-size="12">3: startSession(examId, userId, token)</text>
+
+  <!-- Message 4: ExamEngineModel -> Database: Query Exam & Token -->
+  <line x1="980" y1="310" x2="1500" y2="310" stroke="#06b6d4" stroke-width="2" marker-end="url(#seqArrow)"/>
+  <text x="1010" y="304" fill="#f8fafc" font-size="12">4: SELECT * FROM exams WHERE id=:id AND token=:token</text>
+
+  <!-- Return 5: Database -> ExamEngineModel -->
+  <line x1="1500" y1="330" x2="980" y2="330" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#seqArrowReturn)"/>
+  <text x="1150" y="324" fill="#94a3b8" font-size="11">5: Record Ujian &amp; Sesi Aktif</text>
+
+  <!-- Return 6: ExamEngineModel -> StudentController -->
+  <line x1="980" y1="350" x2="695" y2="350" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#seqArrowReturn)"/>
+  <text x="750" y="344" fill="#94a3b8" font-size="11">6: sessionData, questionsList</text>
+
+  <!-- Return 7: StudentController -> ExamRoomUI -->
+  <line x1="695" y1="370" x2="410" y2="370" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#seqArrowReturn)"/>
+  <text x="440" y="364" fill="#38bdf8" font-size="11">7: Render room.php + init AI Proctoring JS</text>
+
+  <!-- Message 8: ExamRoomUI -> Siswa: Tampilkan Soal & Kamera -->
+  <line x1="410" y1="390" x2="140" y2="390" stroke="#a855f7" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#seqArrowReturn)"/>
+  <text x="170" y="384" fill="#c084fc" font-size="11">8: Tampilan Soal Siap + WebRTC Feed Aktif</text>
+
+  <!-- SECTION 2: REAL-TIME AUTO-SAVE JAWABAN -->
+  <rect x="40" y="430" width="1520" height="30" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="450" fill="#10b981" font-size="12" font-weight="bold">FASE 2: REAL-TIME AUTO-SAVE JAWABAN SISWA</text>
+
+  <!-- Message 9: Siswa -> ExamRoomUI: Pilih Opsi Jawaban -->
+  <line x1="140" y1="480" x2="410" y2="480" stroke="#10b981" stroke-width="2" marker-end="url(#seqArrowGreen)"/>
+  <text x="170" y="474" fill="#f8fafc" font-size="12">9: Klik Opsi Jawaban Radio Button (Option 'B')</text>
+
+  <!-- Message 10: ExamRoomUI -> StudentController (AJAX) -->
+  <line x1="410" y1="505" x2="695" y2="505" stroke="#10b981" stroke-width="2" marker-end="url(#seqArrowGreen)"/>
+  <text x="440" y="499" fill="#f8fafc" font-size="12">10: AJAX POST /student/save_answer (qId, option, csrf)</text>
+
+  <!-- Message 11: StudentController -> ExamEngineModel -->
+  <line x1="695" y1="530" x2="980" y2="530" stroke="#10b981" stroke-width="2" marker-end="url(#seqArrowGreen)"/>
+  <text x="720" y="524" fill="#f8fafc" font-size="12">11: storeAnswer(sessionId, questionId, 'B')</text>
+
+  <!-- Message 12: ExamEngineModel -> Database -->
+  <line x1="980" y1="555" x2="1500" y2="555" stroke="#06b6d4" stroke-width="2" marker-end="url(#seqArrow)"/>
+  <text x="1010" y="549" fill="#f8fafc" font-size="12">12: INSERT INTO exam_answers ON DUPLICATE KEY UPDATE</text>
+
+  <!-- Return 13: Database -> ExamEngineModel -->
+  <line x1="1500" y1="580" x2="980" y2="580" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#seqArrowReturn)"/>
+  <text x="1150" y="574" fill="#94a3b8" font-size="11">13: Success (Rows affected: 1)</text>
+
+  <!-- Return 14: ExamEngineModel -> StudentController -->
+  <line x1="980" y1="605" x2="695" y2="605" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#seqArrowReturn)"/>
+  <text x="750" y="599" fill="#94a3b8" font-size="11">14: Saved Confirmation</text>
+
+  <!-- Return 15: StudentController -> ExamRoomUI -->
+  <line x1="695" y1="630" x2="410" y2="630" stroke="#10b981" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#seqArrowReturn)"/>
+  <text x="440" y="624" fill="#34d399" font-size="11">15: HTTP 200 {status: 'success', timestamp: 12:45:00}</text>
+
+  <!-- Return 16: ExamRoomUI -> Siswa: Update Status -->
+  <line x1="410" y1="655" x2="140" y2="655" stroke="#10b981" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#seqArrowReturn)"/>
+  <text x="170" y="649" fill="#34d399" font-size="11">16: Indikator Nomor Soal Berubah Hijau (Tersimpan)</text>
+
+  <!-- SECTION 3: AI PROCTORING & FRAUD DETECTION -->
+  <rect x="40" y="695" width="1520" height="30" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="715" fill="#f59e0b" font-size="12" font-weight="bold">FASE 3: DETEKSI KECURANGAN REAL-TIME &amp; SCORING RISIKO AI</text>
+
+  <!-- Message 17: Siswa Berpindah Tab -->
+  <line x1="140" y1="745" x2="410" y2="745" stroke="#ef4444" stroke-width="2" marker-end="url(#seqArrowRed)"/>
+  <text x="170" y="739" fill="#fca5a5" font-size="12">17: Event: Tab Switch / Fullscreen Exit Detected!</text>
+
+  <!-- Message 18: ExamRoomUI -> StudentController -->
+  <line x1="410" y1="770" x2="695" y2="770" stroke="#f59e0b" stroke-width="2" marker-end="url(#seqArrowAmber)"/>
+  <text x="440" y="764" fill="#fcd34d" font-size="12">18: POST /student/log_proctoring (type: 'tab_switch', dur: 4s)</text>
+
+  <!-- Message 19: StudentController -> ProctoringRiskService -->
+  <line x1="695" y1="795" x2="1265" y2="795" stroke="#f59e0b" stroke-width="2" marker-end="url(#seqArrowAmber)"/>
+  <text x="720" y="789" fill="#fcd34d" font-size="12">19: evaluateViolation('tab_switch', {duration: 4})</text>
+
+  <!-- Message 20: ProctoringRiskService -> ProctoringRiskService (Self Scoring) -->
+  <path d="M 1265 805 C 1315 805, 1315 835, 1265 835" fill="none" stroke="#f59e0b" stroke-width="1.8" marker-end="url(#seqArrowAmber)"/>
+  <text x="1325" y="825" fill="#fde68a" font-size="11">20: Hitung Bobot (+15 Poin) &amp; Total Risk Score</text>
+
+  <!-- Return 21: ProctoringRiskService -> StudentController -->
+  <line x1="1265" y1="855" x2="695" y2="855" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#seqArrowAmber)"/>
+  <text x="740" y="849" fill="#fcd34d" font-size="11">21: {risk_score: 45, level: 'MEDIUM', should_warn: true}</text>
+
+  <!-- Message 22: StudentController -> Database (Log Incident) -->
+  <line x1="695" y1="880" x2="1500" y2="880" stroke="#06b6d4" stroke-width="2" marker-end="url(#seqArrow)"/>
+  <text x="720" y="874" fill="#f8fafc" font-size="12">22: INSERT INTO proctoring_logs &amp; UPDATE exam_sessions (risk_score)</text>
+
+  <!-- Return 23: Database -> StudentController -->
+  <line x1="1500" y1="905" x2="695" y2="905" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#seqArrowReturn)"/>
+  <text x="1100" y="899" fill="#94a3b8" font-size="11">23: OK</text>
+
+  <!-- Return 24: StudentController -> ExamRoomUI -->
+  <line x1="695" y1="930" x2="410" y2="930" stroke="#ef4444" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#seqArrowRed)"/>
+  <text x="440" y="924" fill="#fca5a5" font-size="11">24: HTTP 200 {warning: true, msg: 'Peringatan: Perpindahan Tab Terdeteksi!'}</text>
+
+  <!-- Return 25: ExamRoomUI -> Siswa: Modal Alert -->
+  <line x1="410" y1="955" x2="140" y2="955" stroke="#ef4444" stroke-width="2" marker-end="url(#seqArrowRed)"/>
+  <text x="170" y="949" fill="#f87171" font-size="11" font-weight="bold">25: Munculkan Dialog Peringatan Pelanggaran &amp; Play Audio Beep</text>
+
+  <!-- SECTION 4: SUBMIT UJIAN & AUTO-GRADING -->
+  <rect x="40" y="995" width="1520" height="30" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="1015" fill="#38bdf8" font-size="12" font-weight="bold">FASE 4: PENYELESAIAN UJIAN, KOREKSI OTOMATIS &amp; PENILAIAN</text>
+
+  <!-- Message 26: Siswa -> ExamRoomUI: Selesai Ujian -->
+  <line x1="140" y1="1045" x2="410" y2="1045" stroke="#38bdf8" stroke-width="2" marker-end="url(#seqArrow)"/>
+  <text x="170" y="1039" fill="#f8fafc" font-size="12">26: Klik "Selesaikan Ujian" &amp; Konfirmasi</text>
+
+  <!-- Message 27: ExamRoomUI -> StudentController -->
+  <line x1="410" y1="1070" x2="695" y2="1070" stroke="#38bdf8" stroke-width="2" marker-end="url(#seqArrow)"/>
+  <text x="440" y="1064" fill="#f8fafc" font-size="12">27: POST /student/finish_exam (sessionId)</text>
+
+  <!-- Message 28: StudentController -> ExamEngineModel -->
+  <line x1="695" y1="1095" x2="980" y2="1095" stroke="#38bdf8" stroke-width="2" marker-end="url(#seqArrow)"/>
+  <text x="720" y="1089" fill="#f8fafc" font-size="12">28: gradeAndFinish(sessionId)</text>
+
+  <!-- Message 29: ExamEngineModel -> Database -->
+  <line x1="980" y1="1120" x2="1500" y2="1120" stroke="#06b6d4" stroke-width="2" marker-end="url(#seqArrow)"/>
+  <text x="1010" y="1114" fill="#f8fafc" font-size="12">29: INSERT INTO exam_results (final_score, status: 'COMPLETED')</text>
+
+  <!-- Return 30: StudentController -> ExamRoomUI -> Siswa -->
+  <line x1="695" y1="1150" x2="140" y2="1150" stroke="#10b981" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#seqArrowGreen)"/>
+  <text x="250" y="1144" fill="#34d399" font-size="12" font-weight="bold">30: Redirect ke /student/result/{id} (Tampilkan Nilai Akhir &amp; Ringkasan Ujian)</text>
+</svg>
