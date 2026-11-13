@@ -22,16 +22,6 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
         <?php endif; ?>
 
-        <!-- Quick Demo Quick-Fill Buttons -->
-        <div class="mb-3">
-            <label class="form-label text-xs fw-semibold text-muted text-uppercase mb-2">Uji Coba Akun Demo (Nomor WA):</label>
-            <div class="btn-group w-100 mb-2" role="group">
-                <button type="button" class="btn btn-outline-success btn-sm" onclick="fillPhone('081234567890')">Admin (0812..90)</button>
-                <button type="button" class="btn btn-outline-success btn-sm" onclick="fillPhone('081234567891')">Guru (0812..91)</button>
-                <button type="button" class="btn btn-outline-success btn-sm" onclick="fillPhone('081234567892')">Siswa (0812..92)</button>
-            </div>
-        </div>
-
         <!-- Forgot Password Form -->
         <form action="<?= BASE_URL; ?>/auth/send_otp" method="POST" autocomplete="off">
             <?= Csrf::tokenField(); ?>
@@ -39,7 +29,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 <label for="identifierInput" class="form-label text-sm fw-semibold text-dark">Nomor WhatsApp / Username / Email</label>
                 <div class="input-group">
                     <span class="input-group-text bg-light text-success border-end-0"><i class="bi bi-whatsapp"></i></span>
-                    <input type="text" name="identifier" class="form-control border-start-0" id="identifierInput" placeholder="Contoh: 081234567890" value="081234567890" required autofocus>
+                    <input type="text" name="identifier" class="form-control border-start-0" id="identifierInput" placeholder="Masukkan nomor WhatsApp, username, atau email" value="" required autofocus>
                 </div>
                 <div class="form-text text-xs text-muted mt-1">
                     <i class="bi bi-shield-check text-success me-1"></i> Kode OTP 6 digit akan dikirimkan ke nomor WhatsApp yang terdaftar.
@@ -64,12 +54,6 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
     </div>
 </div>
-
-<script>
-function fillPhone(phone) {
-    document.getElementById('identifierInput').value = phone;
-}
-</script>
 
 <?php require_once __DIR__ . '/../layouts/footer.php'; ?>
 
