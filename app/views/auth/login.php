@@ -30,22 +30,6 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
         <?php endif; ?>
 
-        <!-- Quick Demo Switcher Buttons -->
-        <div class="mb-3">
-            <label class="form-label text-xs fw-semibold text-muted text-uppercase mb-2">Pilih Akun Demo (Seed Data):</label>
-            <div class="btn-group w-100 mb-2" role="group" aria-label="Role quick fill">
-                <button type="button" class="btn btn-outline-primary btn-sm active" id="btnAdmin" onclick="fillCredentials('admin', 'admin@sekolah.sch.id', 'password123')">Admin</button>
-                <button type="button" class="btn btn-outline-primary btn-sm" id="btnGuru" onclick="fillCredentials('guru', 'budi.santoso@sekolah.sch.id', 'password123')">Guru</button>
-                <button type="button" class="btn btn-outline-primary btn-sm" id="btnSiswa" onclick="fillCredentials('siswa', 'ani.lestari@sekolah.sch.id', 'password123')">Siswa</button>
-            </div>
-            <div class="p-2 bg-light rounded-3 border d-flex align-items-center justify-content-between text-xs">
-                <span><i class="bi bi-key-fill text-warning me-1"></i> Sandi Akun Demo: <strong class="text-primary font-monospace">password123</strong></span>
-                <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none text-xs fw-semibold" onclick="resetFormToDemo()" title="Terapkan kembali kredensial">
-                    <i class="bi bi-arrow-clockwise me-1"></i> Isi Ulang
-                </button>
-            </div>
-        </div>
-
         <!-- Login Form -->
         <form action="<?= BASE_URL; ?>/auth/authenticate" method="POST" autocomplete="off">
             <?= Csrf::tokenField(); ?>
@@ -53,7 +37,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 <label for="usernameInput" class="form-label text-sm fw-semibold text-dark">Email atau Username</label>
                 <div class="input-group">
                     <span class="input-group-text bg-light text-secondary border-end-0"><i class="bi bi-envelope"></i></span>
-                    <input type="text" name="username" class="form-control border-start-0" id="usernameInput" placeholder="admin@sekolah.sch.id" value="admin@sekolah.sch.id" autocomplete="username" required autofocus>
+                    <input type="text" name="username" class="form-control border-start-0" id="usernameInput" placeholder="Masukkan email atau username" value="" autocomplete="username" required autofocus>
                 </div>
             </div>
 
@@ -64,7 +48,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 </div>
                 <div class="input-group">
                     <span class="input-group-text bg-light text-secondary border-end-0"><i class="bi bi-lock"></i></span>
-                    <input type="password" name="password" class="form-control border-start-0 border-end-0" id="passwordInput" placeholder="password123" value="password123" autocomplete="new-password" required>
+                    <input type="password" name="password" class="form-control border-start-0 border-end-0" id="passwordInput" placeholder="Masukkan kata sandi" value="" autocomplete="current-password" required>
                     <button class="btn btn-outline-secondary border-start-0" type="button" id="btnTogglePassword" onclick="togglePasswordVisibility()" title="Lihat kata sandi">
                         <i class="bi bi-eye" id="eyeIcon"></i>
                     </button>
@@ -97,31 +81,6 @@ require_once __DIR__ . '/../layouts/header.php';
 </div>
 
 <script>
-let currentRole = 'admin';
-
-function fillCredentials(type, identifier, password) {
-    currentRole = type;
-    const uInput = document.getElementById('usernameInput');
-    const pInput = document.getElementById('passwordInput');
-    if (uInput) uInput.value = identifier;
-    if (pInput) pInput.value = password;
-    
-    ['btnAdmin', 'btnGuru', 'btnSiswa'].forEach(id => {
-        const btn = document.getElementById(id);
-        if (btn) btn.classList.remove('active');
-    });
-
-    const activeId = type === 'admin' ? 'btnAdmin' : (type === 'guru' ? 'btnGuru' : 'btnSiswa');
-    const activeBtn = document.getElementById(activeId);
-    if (activeBtn) activeBtn.classList.add('active');
-}
-
-function resetFormToDemo() {
-    if (currentRole === 'admin') fillCredentials('admin', 'admin@sekolah.sch.id', 'password123');
-    else if (currentRole === 'guru') fillCredentials('guru', 'budi.santoso@sekolah.sch.id', 'password123');
-    else if (currentRole === 'siswa') fillCredentials('siswa', 'ani.lestari@sekolah.sch.id', 'password123');
-}
-
 function togglePasswordVisibility() {
     const pwd = document.getElementById('passwordInput');
     const icon = document.getElementById('eyeIcon');
