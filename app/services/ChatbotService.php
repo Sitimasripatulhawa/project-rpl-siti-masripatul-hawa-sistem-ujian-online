@@ -706,10 +706,10 @@ class ChatbotService
             "- Role: {$role}\n" .
             "- Data Akses Khusus (Scoped Context) Pengguna Ini:\n{$scopedSummary}\n\n" .
             "- DATA SELURUH TABEL DATABASE SISTEM (13 TABEL TERHUBUNG LENGKAP):\n{$omniSummary}{$dbQuestionsContext}\n\n" .
-            "PEDOMAN JAWABAN RINGKAS, RELEVAN & TEPAT SASARAN (WAJIB DIPATUHI):\n" .
-            "1. JAWAB RINGKAS & LANGSUNG KE INTI PERTANYAAN: Berikan jawaban yang padat, jelas, to-the-point tanpa kalimat pembuka klise atau penutup panjang.\n" .
-            "2. WAJIB 100% SESUAI & RELEVAN DENGAN DATABASE: Seluruh fakta, nomor butir soal, kunci jawaban, pembahasan guru, jadwal, hasil ujian, statistik peserta, dan log proctoring HARUS 100% SESUAI DATA DATABASE RESMI DI ATAS. Dilarang keras mengarang kunci atau data di luar database.\n" .
-            "3. PROPORSIONAL DENGAN PERTANYAAN: Jika pengguna menanyakan hal singkat (contoh: kunci soal, jadwal, nama guru, statistik ujian), jawab langsung secara spesifik dalam 2-4 kalimat atau poin ringkas.\n" .
+            "PEDOMAN JAWABAN RINGKAS BERTINGKAT (PROGRESSIVE DISCLOSURE - WAJIB DIPATUHI):\n" .
+            "1. JAWAB SINGKAT DI AWAL (DEFAULT): Jika pengguna menanyakan jumlah, total, status, atau gambaran umum (contoh: \"ada berapa user?\", \"ada berapa ujian?\", \"ada berapa guru?\"), berikan jawaban yang SANGAT SINGKAT DAN LANGSUNG KE INTI (1-2 kalimat padat, contoh: \"Saat ini ada 10 user pada sistem ujian online (5 siswa, 4 guru, dan 1 admin). Ketik 'rincian user' jika Anda ingin melihat daftar lengkapnya.\"). JANGAN LANGSUNG memberikan daftar panjang berpoin-poin atau tabel besar di awal sebelum diminta.\n" .
+            "2. BERIKAN RINCIAN HANYA JIKA DIMINTA: Jika pengguna meminta rincian (contoh: \"minta rinciannya\", \"rincian user\", \"detailnya\", \"siapa saja\"), barulah tampilkan data lengkap dan rinci yang 100% akurat sesuai database di atas.\n" .
+            "3. WAJIB 100% SESUAI & RELEVAN DENGAN DATABASE: Seluruh fakta, nomor butir soal, kunci jawaban, pembahasan guru, jadwal, hasil ujian, statistik peserta, dan log proctoring HARUS 100% SESUAI DATA DATABASE RESMI DI ATAS. Dilarang keras mengarang kunci atau data di luar database.\n" .
             "4. DILARANG KERAS MENJAWAB PERMINTAAN KODING / PROGRAMMING UMUM:\n" .
             "   - Tolak secara tegas dan ringkas jika pengguna meminta script python, tugas pemrograman eksternal, puisi, resep, atau hiburan non-ujian.\n" .
             "5. BATAS AKSES (SCOPED ACCESS): Hanya tampilkan data milik pengguna ini. JANGAN PERNAH menampilkan data/nilai siswa lain atau kredensial rahasia server.\n" .
@@ -913,6 +913,32 @@ class ChatbotService
                 'suggestions' => self::getSuggestionsForRole($role),
                 'action' => self::getDefaultActionForRole($role)
             ];
+        }
+
+        // 3.0.0 Permintaan Rincian Lanjutan (Follow-up Details via Last Topic Session)
+        if (preg_match('/^(minta rinciannya|berikan rinciannya|rinciannya|detailnya|minta detailnya|rincian lengkap|detail lengkap|siapa saja|jelaskan secara rinci|tampilkan rincian)\b/iu', $normalized) || $normalized === 'rincian' || $normalized === 'detail') {
+            $lastTopic = $_SESSION['chatbot_last_topic'] ?? '';
+            if ($lastTopic === 'users') {
+                return self::getUserDetailsResponse($role);
+            } elseif ($lastTopic === 'teachers') {
+                return self::getTeacherDetailsResponse();
+            } elseif ($lastTopic === 'students') {
+                return self::getStudentDetailsResponse();
+            } elseif ($lastTopic === 'classes') {
+                return self::getClassDetailsResponse();
+            } elseif ($lastTopic === 'subjects') {
+                return self::getSubjectDetailsResponse();
+            } elseif ($lastTopic === 'exams') {
+                return self::getExamDetailsResponse($role);
+            } else {
+                return [
+                    'status' => 'success',
+                    'source' => 'local',
+                    'reply' => "ℹ️ Tentu! Anda ingin melihat rincian data apa?\n\nSilakan pilih salah satu opsi di bawah atau tanyakan topik yang diinginkan (contoh: **\"rincian user\"**, **\"rincian guru\"**, **\"rincian siswa\"**, **\"rincian ujian\"**, atau **\"rincian kelas\"**).",
+                    'suggestions' => ['Rincian user', 'Rincian guru', 'Rincian siswa', 'Rincian ujian'],
+                    'action' => null
+                ];
+            }
         }
 
         // 3.0.1 Identitas Pengguna ("siapa saya", "siapakah saya", "akun saya", "profil saya")
@@ -1249,6 +1275,7 @@ class ChatbotService
 
         // 3.2.7 Ada Berapa Guru / Daftar Guru (Tabel teachers, users)
         if (preg_match('/(berapa guru|jumlah guru|ada berapa guru|total guru|daftar guru|siapa.*pengajar|guru di sini)/iu', $normalized)) {
+            $_SESSION['chatbot_last_topic'] = 'teachers';
             $db = Database::getInstance();
             $teachers = [];
             if ($db->isConnected()) {
@@ -1283,6 +1310,7 @@ class ChatbotService
 
         // 3.2.8 Ada Berapa Kelas / Daftar Kelas & Rombel (Tabel classes)
         if (preg_match('/(berapa kelas|jumlah kelas|ada berapa kelas|total kelas|daftar kelas|kelas apa|rombel|jenjang kelas|tingkat kelas)/iu', $normalized)) {
+            $_SESSION['chatbot_last_topic'] = 'classes';
             $db = Database::getInstance();
             $classes = [];
             if ($db->isConnected()) {
@@ -1311,6 +1339,7 @@ class ChatbotService
 
         // 3.2.9 Ada Berapa Siswa / Daftar Siswa (Tabel students, users, classes)
         if (preg_match('/(berapa siswa|jumlah siswa|ada berapa siswa|total siswa|daftar siswa|berapa murid|siapa siswa)/iu', $normalized)) {
+            $_SESSION['chatbot_last_topic'] = 'students';
             $db = Database::getInstance();
             $students = [];
             if ($db->isConnected()) {
@@ -1346,6 +1375,7 @@ class ChatbotService
 
         // 3.2.10 Sesi Ujian, Jumlah Ujian, & Passing Grade / KKM (Tabel exams, subjects)
         if (preg_match('/(berapa.*ujian|ujian.*berapa|total.*ujian|jumlah.*ujian|banyak.*ujian|ada.*ujian|daftar.*ujian|sesi.*ujian|passing grade|kkm)/iu', $normalized) && !preg_match('/(peserta|siswa)/iu', $normalized)) {
+            $_SESSION['chatbot_last_topic'] = 'exams';
             $db = Database::getInstance();
             $exams = [];
             $totalExams = 0;
@@ -1361,7 +1391,7 @@ class ChatbotService
 
             if (!empty($exams) || $totalExams > 0) {
                 $lines = [
-                    "📋 **Informasi Total Sesi Ujian (Data Database)**:\n",
+                    "📋 **Informasi Total Sesi Ujian (Data Database / database)**:\n",
                     "Saat ini terdapat total **{$totalExams} sesi ujian** yang tercatat di sistem:"
                 ];
                 foreach (array_slice($exams, 0, 5) as $ex) {
@@ -1395,6 +1425,7 @@ class ChatbotService
 
         // 3.2.11 Ada Berapa Mata Pelajaran / Daftar Mata Pelajaran (Tabel subjects)
         if (preg_match('/(ada berapa mata pelajaran|berapa mata pelajaran|jumlah mata pelajaran|total mata pelajaran|ada berapa mapel|berapa mapel|jumlah mapel|daftar mapel|mapel apa|mata pelajaran|subjek|pelajaran apa|daftar pelajaran)/iu', $normalized)) {
+            $_SESSION['chatbot_last_topic'] = 'subjects';
             $db = Database::getInstance();
             $subjects = [];
             if ($db->isConnected()) {
@@ -1422,22 +1453,28 @@ class ChatbotService
             ];
         }
 
-        // 3.2.12 Ringkasan Pengguna Sistem (Tabel users)
-        if (preg_match('/(berapa pengguna|jumlah pengguna|total pengguna|daftar pengguna|jumlah user|total user|berapa user|ada berapa user)/iu', $normalized)) {
+        // 3.2.12 Ringkasan & Rincian Pengguna Sistem (Tabel users)
+        if (preg_match('/(rincian user|detail user|daftar user|siapa saja user|rincian pengguna|detail pengguna|daftar pengguna|siapa saja pengguna)/iu', $normalized)) {
+            $_SESSION['chatbot_last_topic'] = 'users';
+            return self::getUserDetailsResponse($role);
+        }
+
+        if (preg_match('/(berapa pengguna|jumlah pengguna|total pengguna|jumlah user|total user|berapa user|ada berapa user)/iu', $normalized)) {
+            $_SESSION['chatbot_last_topic'] = 'users';
             $db = Database::getInstance();
             $uCounts = ['total' => 0, 'student' => 0, 'teacher' => 0, 'admin' => 0];
             if ($db->isConnected()) {
-                $uCounts['student'] = $db->query("SELECT COUNT(*) AS total FROM users WHERE role = 'student'")->single()['total'] ?? 0;
-                $uCounts['teacher'] = $db->query("SELECT COUNT(*) AS total FROM users WHERE role = 'teacher'")->single()['total'] ?? 0;
-                $uCounts['admin'] = $db->query("SELECT COUNT(*) AS total FROM users WHERE role = 'admin'")->single()['total'] ?? 0;
+                $uCounts['student'] = (int)($db->query("SELECT COUNT(*) AS total FROM users WHERE role = 'student'")->single()['total'] ?? 0);
+                $uCounts['teacher'] = (int)($db->query("SELECT COUNT(*) AS total FROM users WHERE role = 'teacher'")->single()['total'] ?? 0);
+                $uCounts['admin'] = (int)($db->query("SELECT COUNT(*) AS total FROM users WHERE role = 'admin'")->single()['total'] ?? 0);
                 $uCounts['total'] = $uCounts['student'] + $uCounts['teacher'] + $uCounts['admin'];
             }
 
             return [
                 'status' => 'success',
                 'source' => 'database_info',
-                'reply' => "👥 **Data Pengguna Sistem (Database)**:\nSaat ini terdapat **{$uCounts['total']} pengguna** yang terdaftar:\n- **{$uCounts['student']} Siswa** (student)\n- **{$uCounts['teacher']} Guru** (teacher)\n- **{$uCounts['admin']} Administrator** (admin)",
-                'suggestions' => ['Ada berapa siswa', 'Ada berapa guru', 'Ada berapa kelas'],
+                'reply' => "Saat ini terdapat **{$uCounts['total']} pengguna** (user) pada sistem ujian online: **{$uCounts['student']} Siswa**, **{$uCounts['teacher']} Guru**, dan **{$uCounts['admin']} Administrator**.\n\nKetik **\"rincian\"** jika Anda ingin melihat daftar lengkap akun pengguna.",
+                'suggestions' => ['Rincian user', 'Ada berapa guru', 'Ada berapa siswa'],
                 'action' => ($role === 'admin') ? ['label' => 'Buka Manajemen Pengguna', 'url' => BASE_URL . '/admin/users', 'icon' => 'bi-people'] : null
             ];
         }
@@ -2809,6 +2846,255 @@ class ChatbotService
             ],
             default => null
         };
+    }
+
+    /**
+     * Return detailed list of all system users from database
+     */
+    public static function getUserDetailsResponse(string $role): array
+    {
+        $db = Database::getInstance();
+        $users = [];
+        if ($db->isConnected()) {
+            $users = $db->query("SELECT username, full_name, role, is_active FROM users ORDER BY FIELD(role, 'admin', 'teacher', 'student'), full_name ASC")->resultSet() ?: [];
+        }
+
+        $admins = array_filter($users, fn($u) => $u['role'] === 'admin');
+        $teachers = array_filter($users, fn($u) => $u['role'] === 'teacher');
+        $students = array_filter($users, fn($u) => $u['role'] === 'student');
+
+        $lines = ["👥 **Rincian Lengkap Pengguna Sistem (Database)**:\n\nBerikut rincian seluruh akun pengguna yang terdaftar:\n"];
+
+        if (!empty($admins)) {
+            $lines[] = "👑 **Administrator (" . count($admins) . " akun):**";
+            $i = 1;
+            foreach ($admins as $adm) {
+                $st = !empty($adm['is_active']) ? 'Aktif' : 'Nonaktif';
+                $lines[] = "{$i}. **{$adm['full_name']}** (`{$adm['username']}`) - Status: {$st}";
+                $i++;
+            }
+            $lines[] = "";
+        }
+
+        if (!empty($teachers)) {
+            $lines[] = "👨‍🏫 **Guru (" . count($teachers) . " akun):**";
+            $i = 1;
+            foreach ($teachers as $tc) {
+                $st = !empty($tc['is_active']) ? 'Aktif' : 'Nonaktif';
+                $lines[] = "{$i}. **{$tc['full_name']}** (`{$tc['username']}`) - Status: {$st}";
+                $i++;
+            }
+            $lines[] = "";
+        }
+
+        if (!empty($students)) {
+            $lines[] = "🎓 **Siswa (" . count($students) . " akun):**";
+            $i = 1;
+            foreach ($students as $st) {
+                $status = !empty($st['is_active']) ? 'Aktif' : 'Nonaktif';
+                $lines[] = "{$i}. **{$st['full_name']}** (`{$st['username']}`) - Status: {$status}";
+                $i++;
+            }
+        }
+
+        return [
+            'status' => 'success',
+            'source' => 'database_info',
+            'reply' => implode("\n", $lines),
+            'suggestions' => ['Ada berapa kelas', 'Ada berapa mata pelajaran', 'Ada berapa ujian'],
+            'action' => ($role === 'admin') ? ['label' => 'Buka Manajemen Pengguna', 'url' => BASE_URL . '/admin/users', 'icon' => 'bi-people'] : null
+        ];
+    }
+
+    /**
+     * Return detailed list of all teachers from database
+     */
+    public static function getTeacherDetailsResponse(): array
+    {
+        $db = Database::getInstance();
+        $teachers = [];
+        if ($db->isConnected()) {
+            $teachers = $db->query("
+                SELECT u.full_name, t.nip, t.specialization
+                FROM teachers t
+                JOIN users u ON t.user_id = u.id
+                ORDER BY u.full_name ASC
+            ")->resultSet() ?: [];
+        }
+
+        $count = count($teachers);
+        if ($count > 0) {
+            $lines = ["👨‍🏫 **Rincian Data Guru & Pengajar (Database)**:\n\nSaat ini terdapat **{$count} guru** yang terdaftar di database:"];
+            $i = 1;
+            foreach ($teachers as $tc) {
+                $spec = $tc['specialization'] ? " (Bidang: {$tc['specialization']})" : '';
+                $lines[] = "{$i}. **{$tc['full_name']}** - NIP: `{$tc['nip']}`{$spec}";
+                $i++;
+            }
+            $replyText = implode("\n", $lines);
+        } else {
+            $replyText = "👨‍🏫 **Data Guru**: Belum ada data guru terdaftar di database.";
+        }
+
+        return [
+            'status' => 'success',
+            'source' => 'database_info',
+            'reply' => $replyText,
+            'suggestions' => ['Siapa guru matematika', 'Ada berapa mata pelajaran', 'Panduan membuat bank soal'],
+            'action' => null
+        ];
+    }
+
+    /**
+     * Return detailed list of all students from database
+     */
+    public static function getStudentDetailsResponse(): array
+    {
+        $db = Database::getInstance();
+        $students = [];
+        if ($db->isConnected()) {
+            $students = $db->query("
+                SELECT u.full_name, s.nis, c.name AS class_name
+                FROM students s
+                JOIN users u ON s.user_id = u.id
+                LEFT JOIN classes c ON s.class_id = c.id
+                ORDER BY u.full_name ASC
+            ")->resultSet() ?: [];
+        }
+
+        $count = count($students);
+        if ($count > 0) {
+            $lines = ["🎓 **Rincian Data Siswa Terdaftar (Database)**:\n\nSaat ini terdapat **{$count} siswa** yang terdaftar di sistem:"];
+            $i = 1;
+            foreach ($students as $st) {
+                $cls = $st['class_name'] ? ", Kelas: {$st['class_name']}" : '';
+                $lines[] = "{$i}. **{$st['full_name']}** (NIS: `{$st['nis']}`{$cls})";
+                $i++;
+            }
+            $replyText = implode("\n", $lines);
+        } else {
+            $replyText = "🎓 **Data Siswa**: Belum ada siswa terdaftar di database.";
+        }
+
+        return [
+            'status' => 'success',
+            'source' => 'database_info',
+            'reply' => $replyText,
+            'suggestions' => ['NIS setiap siswa', 'Jumlah siswa di setiap kelas nya', 'Ada berapa kelas'],
+            'action' => null
+        ];
+    }
+
+    /**
+     * Return detailed list of all classes from database
+     */
+    public static function getClassDetailsResponse(): array
+    {
+        $db = Database::getInstance();
+        $classes = [];
+        if ($db->isConnected()) {
+            $classes = $db->query("SELECT id, name, level, academic_year FROM classes ORDER BY name ASC")->resultSet() ?: [];
+        }
+
+        $count = count($classes);
+        if ($count > 0) {
+            $lines = ["🏫 **Rincian Rombel Kelas (Database)**:\n\nSaat ini terdapat **{$count} kelas** yang terdaftar di sistem:"];
+            $i = 1;
+            foreach ($classes as $cl) {
+                $lines[] = "{$i}. **{$cl['name']}** (Tingkat: {$cl['level']}, Tahun Ajaran: {$cl['academic_year']})";
+                $i++;
+            }
+            $replyText = implode("\n", $lines);
+        } else {
+            $replyText = "🏫 **Data Kelas**: Belum ada rombel kelas yang terdaftar di basis data.";
+        }
+
+        return [
+            'status' => 'success',
+            'source' => 'database_info',
+            'reply' => $replyText,
+            'suggestions' => ['Jumlah siswa di setiap kelas nya', 'Ada berapa siswa', 'Daftar mata pelajaran'],
+            'action' => null
+        ];
+    }
+
+    /**
+     * Return detailed list of all subjects from database
+     */
+    public static function getSubjectDetailsResponse(): array
+    {
+        $db = Database::getInstance();
+        $subjects = [];
+        if ($db->isConnected()) {
+            $subjects = $db->query("SELECT id, code, name, description FROM subjects ORDER BY name ASC")->resultSet() ?: [];
+        }
+
+        $count = count($subjects);
+        if ($count > 0) {
+            $lines = ["📚 **Rincian Mata Pelajaran (Database)**:\n\nSaat ini terdapat **{$count} mata pelajaran** yang terdaftar di database:"];
+            $i = 1;
+            foreach ($subjects as $sb) {
+                $desc = $sb['description'] ? " - " . $sb['description'] : '';
+                $lines[] = "{$i}. **{$sb['name']}** (`{$sb['code']}`){$desc}";
+                $i++;
+            }
+            $replyText = implode("\n", $lines);
+        } else {
+            $replyText = "📚 **Mata Pelajaran Sistem**: Belum ada data mata pelajaran yang tercatat di database.";
+        }
+
+        return [
+            'status' => 'success',
+            'source' => 'database_info',
+            'reply' => $replyText,
+            'suggestions' => ['Berapa soal di setiap mata pelajaran', 'Siapa guru matematika', 'Bahas soal nomor 1'],
+            'action' => null
+        ];
+    }
+
+    /**
+     * Return detailed list of all exams from database
+     */
+    public static function getExamDetailsResponse(string $role): array
+    {
+        $db = Database::getInstance();
+        $exams = [];
+        $totalExams = 0;
+        if ($db->isConnected()) {
+            $totalExams = (int)($db->query("SELECT COUNT(*) AS total FROM exams")->single()['total'] ?? 0);
+            $exams = $db->query("
+                SELECT e.id, e.title, s.name AS subject_name, e.duration_minutes, e.passing_score, e.status, e.start_time
+                FROM exams e
+                JOIN subjects s ON e.subject_id = s.id
+                ORDER BY e.start_time DESC
+            ")->resultSet() ?: [];
+        }
+
+        if (!empty($exams) || $totalExams > 0) {
+            $lines = [
+                "📋 **Rincian Lengkap Sesi Ujian (Data Database / database)**:\n",
+                "Saat ini terdapat total **{$totalExams} sesi ujian** yang tercatat di sistem:"
+            ];
+            foreach ($exams as $ex) {
+                $statusLabel = match($ex['status']) {
+                    'running' => '🟢 Sedang Berlangsung',
+                    'published' => '📅 Terjadwal',
+                    default => '🏁 Selesai'
+                };
+                $lines[] = "- **{$ex['title']}** ({$ex['subject_name']})\n  Status: {$statusLabel} | Durasi: {$ex['duration_minutes']} menit | KKM: **{$ex['passing_score']}**";
+            }
+            $replyText = implode("\n", $lines);
+        } else {
+            $replyText = "📋 **Jadwal Ujian**: Belum ada sesi ujian aktif di basis data.";
+        }
+
+        return [
+            'status' => 'success',
+            'source' => 'database_info',
+            'reply' => $replyText,
+            'suggestions' => ['Ada berapa peserta', 'Siapa siswa yang telah mengikuti ujian'],
+            'action' => ($role === 'guest') ? ['label' => 'Login Siswa', 'url' => BASE_URL . '/auth/login', 'icon' => 'bi-box-arrow-in-right'] : ['label' => 'Buka Daftar Ujian', 'url' => BASE_URL . '/student/exams', 'icon' => 'bi-journal-check']
+        ];
     }
 
     /**
