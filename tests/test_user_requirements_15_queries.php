@@ -88,35 +88,38 @@ assertCheck("3c. 'siapa saya' (Guru) menampilkan Budi Santoso, NIP, dan Bidang",
 
 // 4. Ada berapa kelas
 $r4 = ChatbotService::reply("ada berapa kelas");
-assertCheck("4. 'ada berapa kelas' dijawab dengan 2 kelas dan nama kelas",
+$r4_detail = ChatbotService::reply("apa saja?");
+assertCheck("4. 'ada berapa kelas' dijawab singkat (2 kelas) lalu dirinci saat ditanya 'apa saja?'",
     $r4['status'] === 'success' &&
     $r4['source'] === 'database_info' &&
     strpos($r4['reply'], '2 kelas') !== false &&
-    strpos($r4['reply'], 'XII MIPA 1') !== false &&
-    strpos($r4['reply'], 'XII MIPA 2') !== false,
-    $r4
+    strpos($r4_detail['reply'], 'XII MIPA 1') !== false &&
+    strpos($r4_detail['reply'], 'XII MIPA 2') !== false,
+    ['r4' => $r4, 'r4_detail' => $r4_detail]
 );
 
 // 5. Ada berapa guru
-$r5 = ChatbotService::reply("ada berapa guru");
-assertCheck("5. 'ada berapa guru' dijawab dengan 4 guru dan daftar guru",
+$r5 = ChatbotService::reply("ada berapa total guru");
+$r5_detail = ChatbotService::reply("siapa saja?");
+assertCheck("5. 'ada berapa total guru' dijawab singkat (4 guru) lalu dirinci saat ditanya 'siapa saja?'",
     $r5['status'] === 'success' &&
     $r5['source'] === 'database_info' &&
     strpos($r5['reply'], '4 guru') !== false &&
-    strpos($r5['reply'], 'Budi Santoso') !== false &&
-    strpos($r5['reply'], 'Tika') !== false,
-    $r5
+    strpos($r5_detail['reply'], 'Budi Santoso') !== false &&
+    strpos($r5_detail['reply'], 'Tika') !== false,
+    ['r5' => $r5, 'r5_detail' => $r5_detail]
 );
 
 // 6. Ada berapa siswa
 $r6 = ChatbotService::reply("ada berapa siswa");
-assertCheck("6. 'ada berapa siswa' dijawab dengan 5 siswa dan daftar siswa",
+$r6_detail = ChatbotService::reply("siapa saja?");
+assertCheck("6. 'ada berapa siswa' dijawab singkat (5 siswa) lalu dirinci saat ditanya 'siapa saja?'",
     $r6['status'] === 'success' &&
     $r6['source'] === 'database_info' &&
     strpos($r6['reply'], '5 siswa') !== false &&
-    strpos($r6['reply'], 'Ani Lestari') !== false &&
-    strpos($r6['reply'], 'Bimo Nugroho') !== false,
-    $r6
+    strpos($r6_detail['reply'], 'Ani Lestari') !== false &&
+    strpos($r6_detail['reply'], 'Bimo Nugroho') !== false,
+    ['r6' => $r6, 'r6_detail' => $r6_detail]
 );
 
 // 7. Ada berapa ujian
@@ -130,24 +133,26 @@ assertCheck("7. 'ada berapa ujian' dijawab dengan jumlah sesi ujian di database"
 
 // 8. Ada berapa mata pelajaran
 $r8 = ChatbotService::reply("ada berapa mata pelajaran");
-assertCheck("8. 'ada berapa mata pelajaran' dijawab dengan 4 mata pelajaran",
+$r8_detail = ChatbotService::reply("apa saja?");
+assertCheck("8. 'ada berapa mata pelajaran' dijawab singkat (4 mata pelajaran) lalu dirinci saat ditanya 'apa saja?'",
     $r8['status'] === 'success' &&
     $r8['source'] === 'database_info' &&
     strpos($r8['reply'], '4 mata pelajaran') !== false &&
-    strpos($r8['reply'], 'Matematika Wajib') !== false,
-    $r8
+    strpos($r8_detail['reply'], 'Matematika Wajib') !== false,
+    ['r8' => $r8, 'r8_detail' => $r8_detail]
 );
 
 // 9. Ada berapa user
-$r9 = ChatbotService::reply("ada berapa user");
-assertCheck("9. 'ada berapa user' dijawab dengan total 10 user dan breakdown role",
+$r9 = ChatbotService::reply("ada berapa total user");
+$r9_detail = ChatbotService::reply("siapa saja usernya");
+assertCheck("9. 'ada berapa total user' dijawab singkat (10 pengguna) lalu dirinci saat ditanya 'siapa saja usernya'",
     $r9['status'] === 'success' &&
     $r9['source'] === 'database_info' &&
     strpos($r9['reply'], '10 pengguna') !== false &&
-    strpos($r9['reply'], 'Siswa') !== false &&
-    strpos($r9['reply'], 'Guru') !== false &&
-    strpos($r9['reply'], 'Admin') !== false,
-    $r9
+    strpos($r9_detail['reply'], 'Siswa') !== false &&
+    strpos($r9_detail['reply'], 'Guru') !== false &&
+    strpos($r9_detail['reply'], 'Administrator') !== false,
+    ['r9' => $r9, 'r9_detail' => $r9_detail]
 );
 
 // 10. Siapa guru matematika
