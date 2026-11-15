@@ -473,3 +473,4 @@ Melalui pengerjaan tugas proyek akhir mandiri ini, penulis berhasil:
 6. Object Management Group (OMG). (2017). *OMG Unified Modeling Language (OMG UML) Version 2.5.1*. OMG Standard.
 7. Google AI. (2024). *Gemini API Documentation & Prompt Engineering Guide*. Google Cloud Documentation.
 8. W3C. (2023). *Media Capture and Streams (WebRTC Working Group Note)*. World Wide Web Consortium.
+
