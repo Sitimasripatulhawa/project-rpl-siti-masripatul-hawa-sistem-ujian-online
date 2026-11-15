@@ -72,10 +72,68 @@ Aplikasi **AI Online Exam & Proctoring System** dibangun secara mandiri mengguna
 
 ### 2.1 Visual Diagram
 Berkas gambar diagram tersimpan dalam 2 format (Vektor SVG & Raster PNG):
-* **PNG** : [`docs/diagrams/01_use_case_diagram.png`](diagrams/01_use_case_diagram.png)
+* **PNG** : [`docs/diagrams/01_use_case_diagram.png`](diagrams/01_use_case_diagram.png) *(562 KB)*
 * **SVG** : [`docs/diagrams/01_use_case_diagram.svg`](diagrams/01_use_case_diagram.svg)
 
 ![Use Case Diagram](diagrams/01_use_case_diagram.png)
+
+```mermaid
+flowchart LR
+    subgraph AktorKiri["Aktor Sebelah Kiri"]
+        Admin(("👑 Administrator\n(«human actor»)"))
+        Guru(("👨‍🏫 Guru / Penguji\n(«human actor»)"))
+        Siswa(("🎓 Siswa / Peserta\n(«human actor»)"))
+    end
+
+    subgraph Boundaries["Batas Sistem: AI Online Exam & Proctoring Platform"]
+        UC01(["UC-01: Autentikasi & RBAC Multi-Role"])
+        UC02(["UC-02: Kelola Master Data Sekolah"])
+        UC03(["UC-03: Pengaturan & Gateway (SMTP/WA)"])
+        UC04(["UC-04: Chatbot Asisten Admin (ExamBot)"])
+        UC05(["UC-05: Bank Soal & Paket Ujian"])
+        UC06(["UC-06: Live Monitoring Ujian Real-Time"])
+        UC07(["UC-07: Penilaian Otomatis & Analitik"])
+        UC08(["UC-08: Cek Kesiapan Sistem (WebRTC)"])
+        UC09(["UC-09: Kerjakan Ujian Online & Auto-Save"])
+        UC10(["UC-10: Pengawasan AI Proctoring Real-Time"])
+        UC11(["UC-11: Chatbot Academic Question Explainer"])
+        UC12(["UC-12: Reset Password & Token OTP/Mail"])
+    end
+
+    subgraph AktorKanan["Aktor Sebelah Kanan"]
+        AIEngine(("🤖 AI Engine\n(Proctoring & Chatbot)\n«automated actor»"))
+    end
+
+    Admin --> UC01
+    Admin --> UC02
+    Admin --> UC03
+    Admin --> UC04
+    Admin --> UC05
+    Admin --> UC07
+    Admin --> UC12
+
+    Guru --> UC01
+    Guru --> UC05
+    Guru --> UC06
+    Guru --> UC07
+    Guru --> UC12
+
+    Siswa --> UC01
+    Siswa --> UC08
+    Siswa --> UC09
+    Siswa --> UC11
+    Siswa --> UC12
+
+    AIEngine -.->|kueri cepat| UC04
+    AIEngine -.->|scoring & visual| UC10
+    AIEngine -.->|tutor edukasi| UC11
+
+    UC09 -.->|«include»| UC08
+    UC09 -.->|«include»| UC01
+    UC09 -.->|«include»| UC10
+    UC10 -.->|«extend» (Risk Alert)| UC06
+    UC07 -.->|«include»| UC09
+```
 
 ### 2.2 Identifikasi Aktor
 1. **Administrator (`«human actor»`)**: Pengelola level super yang bertanggung jawab atas master data institusi, manajemen akun pengguna, pengaturan lingkungan sistem, konfigurasi SMTP email, dan monitoring analitik lintas modul.

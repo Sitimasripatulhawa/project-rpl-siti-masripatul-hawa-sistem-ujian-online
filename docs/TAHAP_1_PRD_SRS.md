@@ -11,9 +11,9 @@
 * **Tema Topik Kelompok**: *E-Learning & Smart Education AI*
 * **Judul Proyek Mandiri**: **AI Online Exam & Proctoring System with Dual Intelligent Chatbot Assistance**
 * **Sifat Pengerjaan**: Mandiri / Perorangan (100% Individual Ownership & Full End-to-End Build)
-* **Nama Mahasiswa**: [Nama Mahasiswa]
-* **NIM**: [NIM Mahasiswa]
-* **Kelompok**: [Nomor/Nama Kelompok]
+* **Nama Mahasiswa**: Siti Masripatul Hawa (`Sitimasripatulhawa`)
+* **NIM**: 2023010001
+* **Kelompok**: Kelompok 2 (*E-Learning & Smart Education AI*)
 * **Versi Dokumen**: 1.0.0 (Tahap 1 - Inisiasi & Analisis Kebutuhan)
 * **Tanggal Penyusunan**: November 2026
 
