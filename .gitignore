@@ -14,6 +14,7 @@ test_debug_*.txt
 .DS_Store
 Thumbs.db
 Desktop.ini
+PUSH_KE_GITHUB.bat
 
 # IDE metadata
 .vscode/
