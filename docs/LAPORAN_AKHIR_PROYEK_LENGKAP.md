@@ -18,9 +18,9 @@
 * **Dosen Pengampu** : Yudhistira Arie Wijaya, M.Kom., CDS.
 * **Sifat Pengerjaan** : Mandiri / Perorangan (100% Individual Ownership & Full-App Build)
 * **Nama Pengembang** : **Siti Masripatul Hawa** (`Sitimasripatulhawa`)
-* **NIM** : 2023010001
+* **NIM** : 41257160
 * **Kelompok** : Kelompok 2 (*E-Learning & Smart Education AI*)
-* **Repositori GitHub** : `https://github.com/Sitimasripatulhawa/proyek-rpl-ai-exam`
+* **Repositori GitHub** : `https://github.com/Sitimasripatulhawa/project-rpl-siti-masripatul-hawa-sistem-ujian-online`
 * **Versi Dokumen** : 1.0.0 (Laporan Akhir Terintegrasi)
 * **Tanggal Pengesahan** : November 2026
 
@@ -35,7 +35,7 @@ Laporan ini disusun secara mandiri sebagai bentuk pertanggungjawaban akademik da
 Penulis menyampaikan rasa terima kasih dan penghargaan yang sebesar-besarnya kepada Bapak **Yudhistira Arie Wijaya, M.Kom., CDS.** selaku dosen pengampu atas arahan, standar rekayasa modern, dan rubrik penilaian OBE yang telah membimbing penulis menjadi *Full-Stack Software Engineer* yang kompeten dan bertanggung jawab. Penulis menyadari karya ini tidak lepas dari kekurangan, sehingga masukan yang membangun sangat diharapkan demi kesempurnaan sistem di masa mendatang.
 
 Cirebon, November 2026  
-**Siti Masripatul Hawa** (NIM: 2023010001)
+**Siti Masripatul Hawa** (NIM: 41257160)
 
 ---
 

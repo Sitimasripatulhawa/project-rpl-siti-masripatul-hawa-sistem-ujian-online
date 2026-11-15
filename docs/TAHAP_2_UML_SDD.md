@@ -9,6 +9,7 @@
 * **Institusi** : STMIK IKMI Cirebon
 * **Dosen Pengampu** : Yudhistira Arie Wijaya, M.Kom., CDS.
 * **Pengembang Mandiri** : Siti Masripatul Hawa (`Sitimasripatulhawa`)
+* **NIM** : 41257160
 * **Tema Topik Proyek** : *E-Learning & Smart Education AI*
 * **Judul Aplikasi** : **AI Online Exam & Proctoring System with Dual Intelligent Chatbot Assistance**
 * **Arsitektur Sistem** : Pure PHP 8.2 MVC Native (Model-View-Controller) & Service Layer Architecture

@@ -6,7 +6,7 @@
 > **Dosen Pengampu:** Yudhistira Arie Wijaya, M.Kom., CDS.  
 > 
 > * **Nama Mahasiswa:** **Siti Masripatul Hawa** (`Sitimasripatulhawa`)  
-> * **NIM:** **2023010001**  
+> * **NIM:** **41257160**  
 > * **Kelompok:** **Kelompok 2**  
 > * **Tema Topik Kelompok:** **E-Learning & Smart Education AI**  
 > * **Repositori Publik:** `https://github.com/Sitimasripatulhawa/project-rpl-siti-masripatul-hawa-sistem-ujian-online`
