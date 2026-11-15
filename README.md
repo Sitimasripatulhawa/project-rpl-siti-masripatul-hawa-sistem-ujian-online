@@ -1,9 +1,27 @@
 # AI Online Exam & Proctoring System with Dual Intelligent Chatbot Assistance
 
-> **Proyek Akhir Rekayasa Perangkat Lunak (TIKB2503021)**  
-> **Program Studi Teknik Informatika / Rekayasa Perangkat Lunak — STMIK IKMI Cirebon**  
-> **Tema:** *E-Learning & Smart Education AI*  
-> **Pengembang:** Siti Masripatul Hawa (`Sitimasripatulhawa`)
+> **PANDUAN TUGAS PROYEK AKHIR MANDIRI & RUBRIK PENILAIAN OBE**  
+> **Mata Kuliah:** Rekayasa Perangkat Lunak (TIKB2503021) — 4 SKS (Semester 3)  
+> **Program Studi:** S1 Teknik Informatika — STMIK IKMI Cirebon  
+> **Dosen Pengampu:** Yudhistira Arie Wijaya, M.Kom., CDS.  
+> 
+> * **Nama Mahasiswa:** **Siti Masripatul Hawa** (`Sitimasripatulhawa`)  
+> * **NIM:** **2023010001**  
+> * **Kelompok:** **Kelompok 2**  
+> * **Tema Topik Kelompok:** **E-Learning & Smart Education AI**  
+> * **Repositori Publik:** `https://github.com/Sitimasripatulhawa/project-rpl-siti-masripatul-hawa-sistem-ujian-online`
+
+---
+
+## 🎥 Tautan Presentasi Video Progres & Live Demo (Wajib Webcam Aktif)
+
+Sesuai ketentuan Bab III & Bab V Panduan Proyek Mandiri OBE, berikut adalah tautan video rekaman layar dan live demo pengujian sistem:
+
+| Tahapan Video | Topik Bahasan & Durasi | Tautan Video (YouTube / GDrive) |
+|---|---|---|
+| **Video Progres 1** | PRD, Latar Belakang Masalah, Kebutuhan FR/NFR, & Peran AI (Durasi 3–5 Menit) | 🔗 `[Tempelkan Tautan Video Progres 1 di sini]` |
+| **Video Progres 2** | Bedah Alur 4 Diagram UML (Use Case, Activity, Class SOLID, Sequence) & UI/UX (Durasi 5–7 Menit) | 🔗 `[Tempelkan Tautan Video Progres 2 di sini]` |
+| **Video Final Demo** | Live Demo Aplikasi Web Utuh, Real-time AI Proctoring, Auto-Grading & CI/CD Status (Durasi 8–12 Menit) | 🔗 `[Tempelkan Tautan Video Final Demo di sini]` |
 
 ---
 
@@ -14,8 +32,8 @@
 Sistem ini dilengkapi dengan:
 1. **AI Proctoring Engine**: Deteksi kecurangan berbasis visual (kamera pengawas WebRTC, deteksi perpindahan tab/jendela, status layar penuh).
 2. **Dual Intelligent Chatbot Assistance**:
-   - **Admin Operational Assistant**: Asisten operasional berbasis Rule-based NLP untuk menjawab metrik sistem secara instan (<50ms) seperti total peserta, total ujian aktif, kelas, dan status server.
-   - **Student Academic Assistant**: Asisten cerdas pemandu teknis siswa selama persiapan dan pengerjaan ujian online.
+   - **Admin Operational Assistant (ExamBot)**: Asisten operasional berbasis Rule-based & Hybrid NLP untuk menjawab metrik sistem secara instan (<50ms) seperti total peserta, total ujian aktif, kelas, dan status server.
+   - **Student Academic Assistant (AI Tutor)**: Tutor pedagogis berbasis LLM Google Gemini API yang membedah konsep butir soal pasca-ujian secara interaktif.
 3. **Enterprise Multi-Role RBAC**: Hak akses berjenjang ketat untuk **Administrator**, **Guru/Penguji**, dan **Siswa/Peserta**.
 
 ---
@@ -114,10 +132,14 @@ C:\xampp\php\php.exe tests/test_http_admin.php
 
 ---
 
-## 📑 Dokumentasi Tahapan Pengembangan
+## 📑 Dokumentasi Tahapan Pengembangan (Luaran SDLC)
 
 Laporan resmi rancang bangun perangkat lunak tersedia pada folder `docs/`:
-- **[Tahap 1: Inisiasi, PRD & SRS (IEEE 830 / ISO 29148)](docs/TAHAP_1_PRD_SRS.md)**
+* 📄 **[Laporan Akhir Proyek Mandiri Lengkap (Bab I s/d Bab V)](docs/LAPORAN_AKHIR_PROYEK_LENGKAP.md)**
+* 📄 **[Tahap 1: Inisiasi, PRD & SRS (IEEE 830 / ISO 29148)](docs/TAHAP_1_PRD_SRS.md)**
+* 📄 **[Tahap 2: Perancangan UML & Arsitektur Sistem SDD](docs/TAHAP_2_UML_SDD.md)**
+* 🖼️ **[Galeri Web 4 Diagram UML Interaktif (SVG & PNG)](docs/diagrams/index.html)**
+* ⚙️ **[Konfigurasi Otomatisasi CI/CD Pipeline GitHub Actions](.github/workflows/ci.yml)**
 
 ---
 
