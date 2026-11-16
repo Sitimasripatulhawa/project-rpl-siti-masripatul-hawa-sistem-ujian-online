@@ -148,10 +148,11 @@ Sistem dirancang mandiri menggunakan arsitektur **3-Tier Pure PHP MVC (Model-Vie
 *Berkas Gambar*: [`docs/diagrams/01_use_case_diagram.png`](diagrams/01_use_case_diagram.png)
 
 ```
-[KIRI: Aktor Manusia]             [TENGAH: Batas Sistem Ujian]           [KANAN: Aktor AI]
-  👑 Administrator  ======> (UC-01 s/d UC-04, UC-12)
-  👨‍🏫 Guru / Penguji ======> (UC-01, UC-05, UC-06, UC-07, UC-12)   <====== 🤖 AI Engine
-  🎓 Siswa / Peserta =====> (UC-01, UC-08, UC-09, UC-11, UC-12)          (UC-04, UC-10, UC-11)
+[KIRI: Aktor Manusia]             [TENGAH: Batas Sistem Ujian]           [KANAN: Aktor Otomatis]
+  👑 Administrator  ======> (UC-01 s/d UC-04, UC-12)                   <====== 🤖 AI Engine
+  👨‍🏫 Guru / Penguji ======> (UC-01, UC-05, UC-06, UC-07, UC-12)                (UC-04, UC-10, UC-11)
+  🎓 Siswa / Peserta =====> (UC-01, UC-08, UC-09, UC-11, UC-12)       <====== 🔑 Aktor Kode OTP
+                                                                                (UC-12, UC-03, UC-01)
 ```
 
 #### Visualisasi Diagram Use Case:
@@ -160,9 +161,9 @@ Sistem dirancang mandiri menggunakan arsitektur **3-Tier Pure PHP MVC (Model-Vie
 #### Matriks 12 Use Case:
 | ID | Nama Use Case | Aktor Terlibat | Relasi Ketergantungan |
 |---|---|---|---|
-| **UC-01** | Autentikasi & RBAC Multi-Role | Admin, Guru, Siswa | Dasar dari seluruh modul internal |
+| **UC-01** | Autentikasi & RBAC Multi-Role | Admin, Guru, Siswa, Aktor Kode OTP | Dasar dari seluruh modul internal |
 | **UC-02** | Kelola Master Data Sekolah | Admin | Independen |
-| **UC-03** | Pengaturan Sistem & Gateway | Admin | Independen |
+| **UC-03** | Pengaturan Sistem & Gateway OTP | Admin, Aktor Kode OTP | Konfigurasi endpoint & API key OTP |
 | **UC-04** | Chatbot Asisten Operasional (ExamBot)| Admin, AI Engine | Independen |
 | **UC-05** | Bank Soal & Paket Ujian | Guru, Admin | Independen |
 | **UC-06** | Live Monitoring Ujian Real-Time | Guru | Diperluas oleh UC-10 (`«extend»`) |
@@ -171,7 +172,7 @@ Sistem dirancang mandiri menggunakan arsitektur **3-Tier Pure PHP MVC (Model-Vie
 | **UC-09** | Kerjakan Ujian Online & Auto-Save | Siswa | Memuat UC-01, UC-08, UC-10 (`«include»`) |
 | **UC-10** | Pengawasan AI Proctoring Real-Time | Siswa, AI Engine | Memperluas UC-06 (`«extend»`) |
 | **UC-11** | Chatbot Academic Question Explainer | Siswa, AI Engine | Independen / Pasca-Ujian |
-| **UC-12** | Reset Password via OTP WA & Email | Admin, Guru, Siswa | Independen |
+| **UC-12** | Reset Password & Verifikasi Kode OTP | Admin, Guru, Siswa, Aktor Kode OTP | Terhubung ke Aktor Kode OTP & UC-03 |
 
 #### Skenario Rinci Use Case Utama (UC-09: Kerjakan Ujian & UC-10: AI Proctoring):
 * **Aktor**: Siswa & AI Engine

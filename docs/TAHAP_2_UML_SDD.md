@@ -103,6 +103,7 @@ flowchart LR
 
     subgraph AktorKanan["Aktor Sebelah Kanan"]
         AIEngine(("🤖 AI Engine\n(Proctoring & Chatbot)\n«automated actor»"))
+        KodeOTP(("🔑 Aktor Kode OTP\n(Layanan OTP WA & SMTP)\n«automated actor»"))
     end
 
     Admin --> UC01
@@ -129,6 +130,10 @@ flowchart LR
     AIEngine -.->|scoring & visual| UC10
     AIEngine -.->|tutor edukasi| UC11
 
+    KodeOTP -->|kirim & validasi OTP token| UC12
+    KodeOTP -.->|verifikasi 2FA/token| UC01
+    KodeOTP -.->|konfigurasi gateway API| UC03
+
     UC09 -.->|«include»| UC08
     UC09 -.->|«include»| UC01
     UC09 -.->|«include»| UC10
@@ -140,14 +145,15 @@ flowchart LR
 1. **Administrator (`«human actor»`)**: Pengelola level super yang bertanggung jawab atas master data institusi, manajemen akun pengguna, pengaturan lingkungan sistem, konfigurasi SMTP email, dan monitoring analitik lintas modul.
 2. **Guru / Penguji (`«human actor»`)**: Pendidik yang berwenang menyusun butir soal, membuat paket jadwal ujian, memantau aktivitas pengerjaan siswa secara *real-time* via *Live Proctoring Feed*, serta melakukan penilaian dan rekapitulasi nilai.
 3. **Siswa / Peserta (`«human actor»`)**: Peserta didik yang menjalani verifikasi kesiapan perangkat (*System Check*), memasukkan token ujian, mengerjakan soal dengan dukungan *auto-save*, diawasi oleh mesin proctoring, serta memanfaatkan *Student Academic Chatbot*.
-4. **AI Engine (`«automated system»`)**: Subsistem cerdas otomatis yang mengeksekusi deteksi kecurangan visual, kalkulasi skor risiko pelanggaran secara *real-time*, dan pemrosesan kueri percakapan asisten cerdas (*Dual Chatbot*).
+4. **AI Engine (`«automated actor»`)**: Subsistem cerdas otomatis yang mengeksekusi deteksi kecurangan visual, kalkulasi skor risiko pelanggaran secara *real-time*, dan pemrosesan kueri percakapan asisten cerdas (*Dual Chatbot*).
+5. **Aktor Kode OTP (`«automated actor»`)**: Layanan gateway eksternal (Fonnte WhatsApp API & SMTP Mail Server) di sebelah kanan sistem yang mengotomatisasi pengiriman, perutean, serta validasi token Kode OTP ke perangkat pengguna untuk keperluan pemulihan kata sandi (*password recovery*) dan autentikasi token ujian.
 
 ### 2.3 Matriks Use Case & Relasi
 | ID | Nama Use Case | Aktor Terlibat | Relasi Ketergantungan |
 |---|---|---|---|
-| **UC-01** | Autentikasi & RBAC Multi-Role | Admin, Guru, Siswa | Dasar dari seluruh modul internal |
+| **UC-01** | Autentikasi & RBAC Multi-Role | Admin, Guru, Siswa, Aktor Kode OTP | Dasar dari seluruh modul internal |
 | **UC-02** | Kelola Master Data Sekolah | Admin | Independen |
-| **UC-03** | Pengaturan Sistem & Mail SMTP | Admin | Independen |
+| **UC-03** | Pengaturan Sistem & Gateway OTP | Admin, Aktor Kode OTP | Konfigurasi endpoint & API key OTP |
 | **UC-04** | Chatbot Asisten Operasional | Admin, AI Engine | Independen |
 | **UC-05** | Bank Soal & Paket Ujian | Guru, Admin | Independen |
 | **UC-06** | Live Monitoring & Proctoring Feed | Guru | Diperluas oleh UC-10 (`«extend»`) |
@@ -156,7 +162,7 @@ flowchart LR
 | **UC-09** | Kerjakan Ujian & Auto-Save | Siswa | Termasuk UC-01, UC-08, UC-10 (`«include»`) |
 | **UC-10** | Pengawasan AI Proctoring Real-time | Siswa, AI Engine | Memperluas UC-06 (`«extend»`) |
 | **UC-11** | Chatbot Bantuan Akademik Siswa | Siswa, AI Engine | Opsional |
-| **UC-12** | Reset Kata Sandi via Email | Admin, Guru, Siswa | Independen |
+| **UC-12** | Reset Password & Verifikasi Kode OTP | Admin, Guru, Siswa, Aktor Kode OTP | Terhubung ke Aktor Kode OTP & UC-03 |
 
 ### 2.4 Skenario Use Case Utama (UC-09: Kerjakan Ujian & UC-10: AI Proctoring)
 * **Aktor Utama** : Siswa & AI Engine

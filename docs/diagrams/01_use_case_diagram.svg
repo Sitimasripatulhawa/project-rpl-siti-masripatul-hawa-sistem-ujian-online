@@ -27,6 +27,9 @@
     <filter id="glowAmber" x="-30%" y="-30%" width="160%" height="160%">
       <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#fbbf24" flood-opacity="0.6"/>
     </filter>
+    <filter id="glowTeal" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#2dd4bf" flood-opacity="0.65"/>
+    </filter>
     
     <!-- Markers for Directed Arrows -->
     <marker id="arrowInclude" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -37,6 +40,9 @@
     </marker>
     <marker id="arrowGold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 1 L 9 5 L 0 9 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#2dd4bf"/>
     </marker>
   </defs>
 
@@ -67,7 +73,7 @@
     <line x1="70" y1="130" x2="35" y2="185" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round"/>
     <!-- Right Leg -->
     <line x1="70" y1="130" x2="105" y2="185" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round"/>
-    <!-- Ground Baseline (sesuai gambar lampiran) -->
+    <!-- Ground Baseline (Standar UML) -->
     <line x1="15" y1="192" x2="125" y2="192" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round"/>
   </g>
   <g transform="translate(50, 190)">
@@ -88,7 +94,7 @@
     <line x1="70" y1="130" x2="35" y2="185" stroke="#34d399" stroke-width="3.5" stroke-linecap="round"/>
     <!-- Right Leg -->
     <line x1="70" y1="130" x2="105" y2="185" stroke="#34d399" stroke-width="3.5" stroke-linecap="round"/>
-    <!-- Ground Baseline (sesuai gambar lampiran) -->
+    <!-- Ground Baseline (Standar UML) -->
     <line x1="15" y1="192" x2="125" y2="192" stroke="#34d399" stroke-width="3.5" stroke-linecap="round"/>
   </g>
   <g transform="translate(50, 500)">
@@ -109,7 +115,7 @@
     <line x1="70" y1="130" x2="35" y2="185" stroke="#c084fc" stroke-width="3.5" stroke-linecap="round"/>
     <!-- Right Leg -->
     <line x1="70" y1="130" x2="105" y2="185" stroke="#c084fc" stroke-width="3.5" stroke-linecap="round"/>
-    <!-- Ground Baseline (sesuai gambar lampiran) -->
+    <!-- Ground Baseline (Standar UML) -->
     <line x1="15" y1="192" x2="125" y2="192" stroke="#c084fc" stroke-width="3.5" stroke-linecap="round"/>
   </g>
   <g transform="translate(50, 810)">
@@ -118,8 +124,8 @@
     <text x="70" y="236" fill="#94a3b8" font-size="10" text-anchor="middle">«human actor»</text>
   </g>
 
-  <!-- ================= KANAN: AKTOR AI ENGINE ================= -->
-  <g transform="translate(1500, 480)" filter="url(#glowAmber)">
+  <!-- ================= KANAN: AKTOR 1 - AI ENGINE ================= -->
+  <g transform="translate(1500, 330)" filter="url(#glowAmber)">
     <!-- Head -->
     <circle cx="70" cy="40" r="24" fill="none" stroke="#fbbf24" stroke-width="3.5" stroke-linecap="round"/>
     <!-- AI Brain Halo Accent -->
@@ -133,13 +139,39 @@
     <line x1="70" y1="130" x2="35" y2="185" stroke="#fbbf24" stroke-width="3.5" stroke-linecap="round"/>
     <!-- Right Leg -->
     <line x1="70" y1="130" x2="105" y2="185" stroke="#fbbf24" stroke-width="3.5" stroke-linecap="round"/>
-    <!-- Ground Baseline (sesuai gambar lampiran) -->
+    <!-- Ground Baseline (Standar UML) -->
     <line x1="15" y1="192" x2="125" y2="192" stroke="#fbbf24" stroke-width="3.5" stroke-linecap="round"/>
   </g>
-  <g transform="translate(1500, 480)">
+  <g transform="translate(1500, 330)">
     <rect x="5" y="202" width="130" height="52" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5" filter="url(#shadow)"/>
     <text x="70" y="222" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">AI Engine</text>
     <text x="70" y="236" fill="#fcd34d" font-size="10" text-anchor="middle">Proctoring &amp; Chatbot</text>
+    <text x="70" y="248" fill="#94a3b8" font-size="9" text-anchor="middle">«automated actor»</text>
+  </g>
+
+  <!-- ================= KANAN: AKTOR 2 - LAYANAN KODE OTP ================= -->
+  <g transform="translate(1500, 750)" filter="url(#glowTeal)">
+    <!-- Head -->
+    <circle cx="70" cy="40" r="24" fill="none" stroke="#2dd4bf" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Security PIN dots inside head -->
+    <circle cx="58" cy="40" r="2.5" fill="#2dd4bf"/>
+    <circle cx="70" cy="40" r="2.5" fill="#2dd4bf"/>
+    <circle cx="82" cy="40" r="2.5" fill="#2dd4bf"/>
+    <!-- Spine / Torso -->
+    <line x1="70" y1="64" x2="70" y2="130" stroke="#2dd4bf" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Arms -->
+    <line x1="25" y1="88" x2="115" y2="88" stroke="#2dd4bf" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Left Leg -->
+    <line x1="70" y1="130" x2="35" y2="185" stroke="#2dd4bf" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Right Leg -->
+    <line x1="70" y1="130" x2="105" y2="185" stroke="#2dd4bf" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Ground Baseline (Standar UML) -->
+    <line x1="15" y1="192" x2="125" y2="192" stroke="#2dd4bf" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(1500, 750)">
+    <rect x="5" y="202" width="130" height="52" rx="8" fill="#1e293b" stroke="#2dd4bf" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="70" y="222" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">Aktor Kode OTP</text>
+    <text x="70" y="236" fill="#2dd4bf" font-size="10" text-anchor="middle">Layanan OTP WA &amp; SMTP</text>
     <text x="70" y="248" fill="#94a3b8" font-size="9" text-anchor="middle">«automated actor»</text>
   </g>
 
@@ -149,109 +181,110 @@
   <!-- Admin -> UC-02 Master Data -->
   <line x1="160" y1="278" x2="330" y2="235" stroke="#38bdf8" stroke-width="1.8" stroke-opacity="0.8"/>
   <!-- Admin -> UC-03 Pengaturan & Gateway -->
-  <line x1="160" y1="278" x2="330" y2="335" stroke="#38bdf8" stroke-width="1.8" stroke-opacity="0.8"/>
+  <line x1="160" y1="278" x2="330" y2="345" stroke="#38bdf8" stroke-width="1.8" stroke-opacity="0.8"/>
   <!-- Admin -> UC-01 Autentikasi -->
   <line x1="160" y1="278" x2="890" y2="235" stroke="#38bdf8" stroke-width="1.8" stroke-opacity="0.8"/>
   <!-- Admin -> UC-04 Chatbot Admin -->
-  <line x1="160" y1="278" x2="890" y2="445" stroke="#38bdf8" stroke-width="1.8" stroke-opacity="0.8"/>
+  <line x1="160" y1="278" x2="890" y2="435" stroke="#38bdf8" stroke-width="1.8" stroke-opacity="0.8"/>
   <!-- Admin -> UC-05 Bank Soal -->
-  <line x1="160" y1="278" x2="330" y2="515" stroke="#38bdf8" stroke-width="1.8" stroke-opacity="0.6"/>
+  <line x1="160" y1="278" x2="330" y2="505" stroke="#38bdf8" stroke-width="1.8" stroke-opacity="0.6"/>
   <!-- Admin -> UC-07 Penilaian & Analitik -->
   <line x1="160" y1="278" x2="330" y2="715" stroke="#38bdf8" stroke-width="1.8" stroke-opacity="0.6"/>
-  <!-- Admin -> UC-12 Reset Password -->
-  <line x1="160" y1="278" x2="330" y2="1055" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="6 3" stroke-opacity="0.5"/>
+  <!-- Admin -> UC-12 Reset Password & Token -->
+  <line x1="160" y1="278" x2="890" y2="985" stroke="#38bdf8" stroke-width="1.4" stroke-dasharray="6 3" stroke-opacity="0.5"/>
 
   <!-- 2. Guru Associations (Green) -->
   <!-- Guru -> UC-01 Autentikasi -->
   <line x1="160" y1="588" x2="890" y2="235" stroke="#34d399" stroke-width="1.8" stroke-opacity="0.7"/>
   <!-- Guru -> UC-05 Bank Soal & Paket Ujian -->
-  <line x1="160" y1="588" x2="330" y2="515" stroke="#34d399" stroke-width="2" stroke-opacity="0.9"/>
+  <line x1="160" y1="588" x2="330" y2="505" stroke="#34d399" stroke-width="2" stroke-opacity="0.9"/>
   <!-- Guru -> UC-06 Live Monitoring Ujian -->
-  <line x1="160" y1="588" x2="330" y2="615" stroke="#34d399" stroke-width="2" stroke-opacity="0.9"/>
+  <line x1="160" y1="588" x2="330" y2="610" stroke="#34d399" stroke-width="2" stroke-opacity="0.9"/>
   <!-- Guru -> UC-07 Penilaian & Analitik -->
   <line x1="160" y1="588" x2="330" y2="715" stroke="#34d399" stroke-width="2" stroke-opacity="0.9"/>
-  <!-- Guru -> UC-12 Reset Password -->
-  <line x1="160" y1="588" x2="330" y2="1055" stroke="#34d399" stroke-width="1.5" stroke-dasharray="6 3" stroke-opacity="0.5"/>
+  <!-- Guru -> UC-12 Reset Password & Token -->
+  <line x1="160" y1="588" x2="890" y2="985" stroke="#34d399" stroke-width="1.4" stroke-dasharray="6 3" stroke-opacity="0.5"/>
 
   <!-- 3. Siswa Associations (Purple) -->
   <!-- Siswa -> UC-01 Autentikasi -->
   <line x1="160" y1="898" x2="890" y2="235" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.7"/>
   <!-- Siswa -> UC-08 Cek Kesiapan Sistem -->
-  <line x1="160" y1="898" x2="330" y2="845" stroke="#c084fc" stroke-width="2" stroke-opacity="0.9"/>
+  <line x1="160" y1="898" x2="330" y2="825" stroke="#c084fc" stroke-width="2" stroke-opacity="0.9"/>
   <!-- Siswa -> UC-09 Kerjakan Ujian Online -->
-  <line x1="160" y1="898" x2="330" y2="945" stroke="#c084fc" stroke-width="2.2" stroke-opacity="0.95"/>
-  <!-- Siswa -> UC-11 Chatbot Akademik Explainer -->
-  <line x1="160" y1="898" x2="890" y2="825" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.8"/>
-  <!-- Siswa -> UC-12 Reset Password -->
-  <line x1="160" y1="898" x2="330" y2="1055" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.8"/>
+  <line x1="160" y1="898" x2="330" y2="935" stroke="#c084fc" stroke-width="2.2" stroke-opacity="0.95"/>
+  <!-- Siswa -> UC-11 Chatbot Academic Explainer -->
+  <line x1="160" y1="898" x2="890" y2="805" stroke="#c084fc" stroke-width="1.8" stroke-opacity="0.8"/>
+  <!-- Siswa -> UC-12 Reset Password & Token -->
+  <line x1="160" y1="898" x2="890" y2="985" stroke="#c084fc" stroke-width="2" stroke-opacity="0.9"/>
 
   <!-- 4. AI Engine Associations (Gold - from Right) -->
   <!-- AI -> UC-04 Chatbot Asisten Admin -->
-  <line x1="1500" y1="568" x2="1200" y2="445" stroke="#fbbf24" stroke-width="2" stroke-opacity="0.9"/>
+  <line x1="1500" y1="418" x2="1200" y2="435" stroke="#fbbf24" stroke-width="2" stroke-opacity="0.9"/>
   <!-- AI -> UC-10 Pengawasan AI Proctoring Real-Time -->
-  <line x1="1500" y1="568" x2="1200" y2="635" stroke="#fbbf24" stroke-width="2.5" stroke-opacity="0.95"/>
+  <line x1="1500" y1="418" x2="1208" y2="620" stroke="#fbbf24" stroke-width="2.5" stroke-opacity="0.95"/>
   <!-- AI -> UC-11 Chatbot Academic Explainer -->
-  <line x1="1500" y1="568" x2="1200" y2="825" stroke="#fbbf24" stroke-width="2" stroke-opacity="0.9"/>
+  <line x1="1500" y1="418" x2="1200" y2="805" stroke="#fbbf24" stroke-width="2" stroke-opacity="0.9"/>
 
-  <!-- ================= USE CASES (KOLOM KIRI: KOLOM MANUSIA) ================= -->
+  <!-- 5. Aktor Kode OTP Associations (Teal - from Right) -->
+  <!-- Kode OTP -> UC-12 Reset Password & Verifikasi OTP Token -->
+  <line x1="1500" y1="838" x2="1200" y2="985" stroke="#2dd4bf" stroke-width="2.6" stroke-opacity="0.95"/>
+  <!-- Kode OTP -> UC-03 Pengaturan Gateway OTP (WA & SMTP Config) -->
+  <path d="M 1500 838 Q 1330 450 600 345" fill="none" stroke="#2dd4bf" stroke-width="1.6" stroke-dasharray="6 3" stroke-opacity="0.7"/>
+  <!-- Kode OTP -> UC-01 Autentikasi Login Verifikasi Token -->
+  <path d="M 1500 838 Q 1380 480 1200 235" fill="none" stroke="#2dd4bf" stroke-width="1.6" stroke-dasharray="6 3" stroke-opacity="0.75"/>
+
+  <!-- ================= USE CASES (KOLOM KIRI: KOLOM HUMAN/OPERASIONAL) ================= -->
 
   <!-- UC-02: Kelola Master Data -->
   <g transform="translate(330, 200)" filter="url(#shadow)">
-    <ellipse cx="140" cy="35" rx="135" ry="32" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
-    <text x="140" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-02: Kelola Master Data</text>
-    <text x="140" y="47" fill="#94a3b8" font-size="11" text-anchor="middle">(User, Guru, Siswa, Rombel, Mapel)</text>
+    <ellipse cx="135" cy="35" rx="135" ry="32" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="135" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-02: Kelola Master Data</text>
+    <text x="135" y="47" fill="#94a3b8" font-size="11" text-anchor="middle">(User, Guru, Siswa, Rombel, Mapel)</text>
   </g>
 
   <!-- UC-03: Pengaturan Sistem & Gateway -->
-  <g transform="translate(330, 300)" filter="url(#shadow)">
-    <ellipse cx="140" cy="35" rx="135" ry="32" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
-    <text x="140" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-03: Pengaturan &amp; Gateway</text>
-    <text x="140" y="47" fill="#94a3b8" font-size="11" text-anchor="middle">(Config, SMTP Gmail, Fonnte WA)</text>
+  <g transform="translate(330, 310)" filter="url(#shadow)">
+    <ellipse cx="135" cy="35" rx="135" ry="32" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="135" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-03: Pengaturan &amp; Gateway</text>
+    <text x="135" y="47" fill="#2dd4bf" font-size="11" text-anchor="middle">(Config, SMTP Gmail, Fonnte WA)</text>
   </g>
 
   <!-- UC-05: Bank Soal & Paket Ujian -->
-  <g transform="translate(330, 480)" filter="url(#shadow)">
-    <ellipse cx="140" cy="35" rx="135" ry="32" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
-    <text x="140" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-05: Bank Soal &amp; Paket Ujian</text>
-    <text x="140" y="47" fill="#94a3b8" font-size="11" text-anchor="middle">(CRUD Soal, Opsi, Bobot, Jadwal)</text>
+  <g transform="translate(330, 470)" filter="url(#shadow)">
+    <ellipse cx="135" cy="35" rx="135" ry="32" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+    <text x="135" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-05: Bank Soal &amp; Paket Ujian</text>
+    <text x="135" y="47" fill="#94a3b8" font-size="11" text-anchor="middle">(CRUD Soal, Opsi, Bobot, Jadwal)</text>
   </g>
 
   <!-- UC-06: Live Monitoring Ujian -->
-  <g transform="translate(330, 580)" filter="url(#shadow)">
-    <ellipse cx="140" cy="35" rx="135" ry="32" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
-    <text x="140" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-06: Live Monitoring Ujian</text>
-    <text x="140" y="47" fill="#94a3b8" font-size="11" text-anchor="middle">(Live Feed, Snapshot Pelanggaran)</text>
+  <g transform="translate(330, 575)" filter="url(#shadow)">
+    <ellipse cx="135" cy="35" rx="135" ry="32" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+    <text x="135" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-06: Live Monitoring Ujian</text>
+    <text x="135" y="47" fill="#94a3b8" font-size="11" text-anchor="middle">(Live Feed, Snapshot Pelanggaran)</text>
   </g>
 
   <!-- UC-07: Penilaian & Analitik -->
   <g transform="translate(330, 680)" filter="url(#shadow)">
-    <ellipse cx="140" cy="35" rx="135" ry="32" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
-    <text x="140" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-07: Penilaian &amp; Analitik</text>
-    <text x="140" y="47" fill="#94a3b8" font-size="11" text-anchor="middle">(Koreksi Otomatis, Rekap Nilai)</text>
+    <ellipse cx="135" cy="35" rx="135" ry="32" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+    <text x="135" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-07: Penilaian &amp; Analitik</text>
+    <text x="135" y="47" fill="#94a3b8" font-size="11" text-anchor="middle">(Koreksi Otomatis, Rekap Nilai)</text>
   </g>
 
   <!-- UC-08: Cek Kesiapan Sistem -->
-  <g transform="translate(330, 810)" filter="url(#shadow)">
-    <ellipse cx="140" cy="35" rx="135" ry="32" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
-    <text x="140" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-08: Cek Kesiapan Sistem</text>
-    <text x="140" y="47" fill="#94a3b8" font-size="11" text-anchor="middle">(Verifikasi Kamera WebRTC &amp; Layar)</text>
+  <g transform="translate(330, 790)" filter="url(#shadow)">
+    <ellipse cx="135" cy="35" rx="135" ry="32" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="135" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-08: Cek Kesiapan Sistem</text>
+    <text x="135" y="47" fill="#94a3b8" font-size="11" text-anchor="middle">(Verifikasi Kamera WebRTC &amp; Layar)</text>
   </g>
 
   <!-- UC-09: Kerjakan Ujian Online -->
-  <g transform="translate(330, 910)" filter="url(#shadow)">
-    <ellipse cx="140" cy="35" rx="138" ry="34" fill="#1e293b" stroke="#8b5cf6" stroke-width="2.5"/>
-    <text x="140" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-09: Kerjakan Ujian Online</text>
-    <text x="140" y="47" fill="#c084fc" font-size="11" text-anchor="middle">(Timer, Auto-Save, Navigasi Soal)</text>
+  <g transform="translate(330, 900)" filter="url(#shadow)">
+    <ellipse cx="138" cy="35" rx="138" ry="34" fill="#1e293b" stroke="#8b5cf6" stroke-width="2.5"/>
+    <text x="138" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-09: Kerjakan Ujian Online</text>
+    <text x="138" y="47" fill="#c084fc" font-size="11" text-anchor="middle">(Timer, Auto-Save, Navigasi Soal)</text>
   </g>
 
-  <!-- UC-12: Reset Password & Token -->
-  <g transform="translate(330, 1020)" filter="url(#shadow)">
-    <ellipse cx="140" cy="35" rx="135" ry="32" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
-    <text x="140" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-12: Reset Password &amp; Token</text>
-    <text x="140" y="47" fill="#94a3b8" font-size="11" text-anchor="middle">(Verifikasi OTP WA / Email SMTP)</text>
-  </g>
-
-  <!-- ================= USE CASES (KOLOM KANAN: TERHUBUNG KE AI & INTI) ================= -->
+  <!-- ================= USE CASES (KOLOM KANAN: TERHUBUNG KE AI & SERVICE) ================= -->
 
   <!-- UC-01: Autentikasi & RBAC Multi-Role -->
   <g transform="translate(890, 200)" filter="url(#shadow)">
@@ -261,75 +294,85 @@
   </g>
 
   <!-- UC-04: Chatbot Asisten Admin / ExamBot -->
-  <g transform="translate(890, 410)" filter="url(#shadow)">
+  <g transform="translate(890, 400)" filter="url(#shadow)">
     <ellipse cx="155" cy="35" rx="155" ry="33" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
     <text x="155" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-04: Chatbot Asisten Operasional</text>
     <text x="155" y="47" fill="#94a3b8" font-size="11" text-anchor="middle">(ExamBot: Kueri Cepat Metrik &amp; Status)</text>
   </g>
 
   <!-- UC-10: Pengawasan AI Proctoring Real-Time -->
-  <g transform="translate(890, 600)" filter="url(#glowAmber)">
-    <ellipse cx="155" cy="35" rx="158" ry="36" fill="#1e293b" stroke="#fbbf24" stroke-width="3"/>
-    <text x="155" y="29" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-10: Pengawasan AI Proctoring</text>
-    <text x="155" y="47" fill="#fcd34d" font-size="11" font-weight="600" text-anchor="middle">(Face Absent, Multi-Face, Risk Engine)</text>
+  <g transform="translate(890, 585)" filter="url(#glowAmber)">
+    <ellipse cx="158" cy="35" rx="158" ry="35" fill="#1e293b" stroke="#fbbf24" stroke-width="3"/>
+    <text x="158" y="29" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-10: Pengawasan AI Proctoring</text>
+    <text x="158" y="47" fill="#fcd34d" font-size="11" font-weight="600" text-anchor="middle">(Face Absent, Multi-Face, Risk Engine)</text>
   </g>
 
   <!-- UC-11: Chatbot Academic Question Explainer -->
-  <g transform="translate(890, 790)" filter="url(#shadow)">
+  <g transform="translate(890, 770)" filter="url(#shadow)">
     <ellipse cx="155" cy="35" rx="155" ry="34" fill="#1e293b" stroke="#a855f7" stroke-width="2.5"/>
     <text x="155" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-11: Chatbot Academic Explainer</text>
     <text x="155" y="47" fill="#c084fc" font-size="11" text-anchor="middle">(Tutor Gemini AI: Pembahasan Butir Soal)</text>
   </g>
 
+  <!-- UC-12: Reset Password & Verifikasi Kode OTP (Direct to OTP Actor) -->
+  <g transform="translate(890, 950)" filter="url(#glowTeal)">
+    <ellipse cx="155" cy="35" rx="155" ry="34" fill="#1e293b" stroke="#2dd4bf" stroke-width="2.8"/>
+    <text x="155" y="30" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">UC-12: Reset Password &amp; Verifikasi OTP</text>
+    <text x="155" y="47" fill="#2dd4bf" font-size="11" font-weight="600" text-anchor="middle">(Kirim &amp; Validasi Kode OTP WA / SMTP)</text>
+  </g>
+
   <!-- ================= DEPENDENCIES: <<include>> & <<extend>> ================= -->
 
   <!-- UC-09 includes UC-08 (Kesiapan Sistem) -->
-  <path d="M 470 910 L 470 878" fill="none" stroke="#cbd5e1" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#arrowInclude)"/>
-  <rect x="480" y="880" width="75" height="20" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1"/>
-  <text x="517" y="894" fill="#cbd5e1" font-size="10" font-style="italic" text-anchor="middle">«include»</text>
+  <path d="M 468 900 L 468 860" fill="none" stroke="#cbd5e1" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#arrowInclude)"/>
+  <rect x="478" y="865" width="75" height="20" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+  <text x="515" y="879" fill="#cbd5e1" font-size="10" font-style="italic" text-anchor="middle">«include»</text>
 
   <!-- UC-09 includes UC-01 (Autentikasi) -->
-  <path d="M 600 935 Q 780 750 940 265" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowInclude)"/>
+  <path d="M 605 920 Q 780 750 940 265" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowInclude)"/>
   <rect x="740" y="580" width="75" height="20" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1"/>
   <text x="777" y="594" fill="#cbd5e1" font-size="10" font-style="italic" text-anchor="middle">«include»</text>
 
   <!-- UC-09 includes UC-10 (Pengawasan AI Proctoring) -->
-  <path d="M 605 930 Q 750 820 900 660" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrowGold)"/>
-  <rect x="735" y="780" width="80" height="20" rx="4" fill="#0f172a" stroke="#b45309" stroke-width="1"/>
-  <text x="775" y="794" fill="#fcd34d" font-size="10" font-weight="bold" text-anchor="middle">«include»</text>
+  <path d="M 605 925 Q 750 820 900 645" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrowGold)"/>
+  <rect x="735" y="770" width="80" height="20" rx="4" fill="#0f172a" stroke="#b45309" stroke-width="1"/>
+  <text x="775" y="784" fill="#fcd34d" font-size="10" font-weight="bold" text-anchor="middle">«include»</text>
 
   <!-- UC-10 extends UC-06 (Alerting Live Monitoring Guru) -->
-  <path d="M 890 635 L 610 615" fill="none" stroke="#f87171" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrowExtend)"/>
-  <rect x="705" y="605" width="135" height="22" rx="4" fill="#0f172a" stroke="#ef4444" stroke-width="1"/>
-  <text x="772" y="620" fill="#fca5a5" font-size="10" font-weight="bold" text-anchor="middle">«extend» (Risk Alert)</text>
+  <path d="M 890 620 L 600 610" fill="none" stroke="#f87171" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrowExtend)"/>
+  <rect x="705" y="595" width="135" height="22" rx="4" fill="#0f172a" stroke="#ef4444" stroke-width="1"/>
+  <text x="772" y="610" fill="#fca5a5" font-size="10" font-weight="bold" text-anchor="middle">«extend» (Risk Alert)</text>
 
   <!-- UC-07 includes UC-09 (Penilaian dari Hasil Pengerjaan) -->
-  <path d="M 470 745 L 470 910" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowInclude)"/>
-  <rect x="480" y="810" width="75" height="20" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1"/>
-  <text x="517" y="824" fill="#cbd5e1" font-size="10" font-style="italic" text-anchor="middle">«include»</text>
+  <path d="M 468 745 L 468 900" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowInclude)"/>
+  <rect x="478" y="810" width="75" height="20" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+  <text x="515" y="824" fill="#cbd5e1" font-size="10" font-style="italic" text-anchor="middle">«include»</text>
 
   <!-- ================= FOOTER LEGEND ================= -->
-  <g transform="translate(60, 1135)">
-    <rect width="1600" height="45" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <g transform="translate(50, 1135)">
+    <rect width="1620" height="45" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
     
-    <line x1="30" y1="22" x2="60" y2="22" stroke="#38bdf8" stroke-width="2"/>
-    <text x="70" y="26" fill="#cbd5e1" font-size="12">Admin Associations</text>
+    <line x1="20" y1="22" x2="48" y2="22" stroke="#38bdf8" stroke-width="2"/>
+    <text x="56" y="26" fill="#cbd5e1" font-size="11.5">Admin</text>
     
-    <line x1="240" y1="22" x2="270" y2="22" stroke="#34d399" stroke-width="2"/>
-    <text x="280" y="26" fill="#cbd5e1" font-size="12">Guru Associations</text>
+    <line x1="120" y1="22" x2="148" y2="22" stroke="#34d399" stroke-width="2"/>
+    <text x="156" y="26" fill="#cbd5e1" font-size="11.5">Guru</text>
     
-    <line x1="440" y1="22" x2="470" y2="22" stroke="#c084fc" stroke-width="2"/>
-    <text x="480" y="26" fill="#cbd5e1" font-size="12">Siswa Associations</text>
+    <line x1="210" y1="22" x2="238" y2="22" stroke="#c084fc" stroke-width="2"/>
+    <text x="246" y="26" fill="#cbd5e1" font-size="11.5">Siswa</text>
     
-    <line x1="640" y1="22" x2="670" y2="22" stroke="#fbbf24" stroke-width="2"/>
-    <text x="680" y="26" fill="#cbd5e1" font-size="12">AI Engine Interactions</text>
+    <line x1="300" y1="22" x2="328" y2="22" stroke="#fbbf24" stroke-width="2"/>
+    <text x="336" y="26" fill="#cbd5e1" font-size="11.5">AI Engine</text>
+
+    <line x1="420" y1="22" x2="448" y2="22" stroke="#2dd4bf" stroke-width="2"/>
+    <text x="456" y="26" fill="#cbd5e1" font-size="11.5">Aktor Kode OTP</text>
     
-    <line x1="870" y1="22" x2="910" y2="22" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 3"/>
-    <text x="920" y="26" fill="#cbd5e1" font-size="12">«include» Dependency</text>
+    <line x1="590" y1="22" x2="625" y2="22" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="633" y="26" fill="#cbd5e1" font-size="11.5">«include» Dependency</text>
     
-    <line x1="1100" y1="22" x2="1140" y2="22" stroke="#f87171" stroke-width="2" stroke-dasharray="4 3"/>
-    <text x="1150" y="26" fill="#fca5a5" font-size="12">«extend» Dependency</text>
+    <line x1="800" y1="22" x2="835" y2="22" stroke="#f87171" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="843" y="26" fill="#fca5a5" font-size="11.5">«extend» Dependency</text>
     
-    <text x="1390" y="26" fill="#94a3b8" font-size="12">Standar UML 2.5 • STMIK IKMI Cirebon</text>
+    <text x="1130" y="26" fill="#94a3b8" font-size="11.5">Standar UML 2.5 • Mahasiswa: Siti Masripatul Hawa • STMIK IKMI Cirebon</text>
   </g>
 </svg>
